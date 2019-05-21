@@ -207,7 +207,7 @@ void build_orig_constant_list( void )
     } else {
       tmp = copy_Token( tyl->type->item );
     }
-    if ( (n = get_type( tmp )) == -1 ) {
+    if ( (n = get_type( tmp ) == -1 ) {
       tyl->n = lnum_types;
       ltype_names[lnum_types++] = copy_Token( tmp );
     } else {
@@ -228,7 +228,7 @@ void build_orig_constant_list( void )
     } else {
       tmp = copy_Token( tyl->type->item );
     }
-    if ( (n = get_type( tmp )) == -1 ) {
+    if ( (n = get_type( tmp ) == -1 ) {
       tyl->n = lnum_types;
       ltype_names[lnum_types++] = copy_Token( tmp );
     } else {
@@ -249,7 +249,7 @@ void build_orig_constant_list( void )
     } else {
       tmp = copy_Token( tyl->type->item );
     }
-    if ( (n = get_type( tmp )) == -1 ) {
+    if ( (n = get_type( tmp ) == -1 ) {
       tyl->n = lnum_types;
       ltype_names[lnum_types++] = copy_Token( tmp );
     } else {
@@ -271,7 +271,7 @@ void build_orig_constant_list( void )
       } else {
 	tmp = copy_Token( tyl->type->item );
       }
-      if ( (n = get_type( tmp )) == -1 ) {
+      if ( (n = get_type( tmp ) == -1 ) {
 	tyl->n = lnum_types;
 	ltype_names[lnum_types++] = copy_Token( tmp );
       } else {
@@ -294,7 +294,7 @@ void build_orig_constant_list( void )
       } else {
  	tmp = copy_Token( tyl->type->item );
       }
-      if ( (n = get_type( tmp )) == -1 ) {
+      if ( (n = get_type( tmp ) == -1 ) {
  	tyl->n = lnum_types;
  	ltype_names[lnum_types++] = copy_Token( tmp );
       } else {
@@ -321,7 +321,7 @@ void build_orig_constant_list( void )
       } else {
 	tmp = copy_Token( tyl->type->item );
       }
-      if ( (n = get_type( tmp )) == -1 ) {
+      if ( (n = get_type( tmp ) == -1 ) {
 	tyl->n = lnum_types;
 	ltype_names[lnum_types++] = copy_Token( tmp );
       } else {
@@ -695,7 +695,7 @@ void collect_type_names_in_pl( PlNode *n )
       } else {
 	tmp = copy_Token( tyl->type->item );
       }
-      if ( (nn = get_type( tmp )) == -1 ) {
+      if ( (nn = get_type( tmp ) == -1 ) {
 	tyl->n = lnum_types;
 	ltype_names[lnum_types++] = copy_Token( tmp );
       } else {

@@ -148,7 +148,7 @@ z [Zz]
 
 \n    {  lineno++; } 
 
-<OVERREAD>(.^\(\))*\n  {  lineno++; }
+<OVERREAD>(.^\(\)*\n  {  lineno++; }
 
 <OVERREAD>[^\(\)]  {  }
 

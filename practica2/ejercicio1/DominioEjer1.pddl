@@ -18,7 +18,7 @@
 				 (personaje_tiene ?personaje - personaje ?objeto - objeto)
 				 (personaje_tiene_objeto ?personaje - personaje)
 				 (posicion_objeto ?objeto - objeto ?zona - zona)
-				 (posicion_personaje ?personaje - personaje ?zona - zona	)
+				 (posicion_personaje ?personaje - personaje ?zona - zona)
 	       )
   (:action girarIzquierda
 	     :parameters (?player - jugador)
@@ -96,5 +96,3 @@
 
 
 )
-
-			

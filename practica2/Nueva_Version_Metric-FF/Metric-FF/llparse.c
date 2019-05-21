@@ -19,7 +19,7 @@
 +       } else {
 + 	tmp = copy_Token( tyl->type->item );
 +       }
-+       if ( (n = get_type( tmp )) == -1 ) {
++       if ( (n = get_type( tmp ) == -1 ) {
 + 	tyl->n = lnum_types;
 + 	ltype_names[lnum_types++] = copy_Token( tmp );
 +       } else {

@@ -173,7 +173,7 @@ typedef unsigned int flex_uint32_t;
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
  */
-#define YY_STATE_BUF_SIZE   ((YY_BUF_SIZE + 2) * sizeof(yy_state_type))
+#define YY_STATE_BUF_SIZE   ((YY_BUF_SIZE + 2) * sizeof(yy_state_type)
 
 #ifndef YY_TYPEDEF_YY_BUFFER_STATE
 #define YY_TYPEDEF_YY_BUFFER_STATE
@@ -268,7 +268,7 @@ struct yy_buffer_state
 	 * possible backing-up.
 	 *
 	 * When we actually see the EOF, we change the status to "new"
-	 * (via ops_pddlrestart()), so that the user can continue scanning by
+	 * (via ops_pddlrestart(), so that the user can continue scanning by
 	 * just pointing ops_pddlin at a new input file.
 	 */
 #define YY_BUFFER_EOF_PENDING 2
@@ -742,7 +742,7 @@ static int input (void );
 /* This used to be an fputs(), but since the string might contain NUL's,
  * we now use fwrite().
  */
-#define ECHO do { if (fwrite( ops_pddltext, ops_pddlleng, 1, ops_pddlout )) {} } while (0)
+#define ECHO do { if (fwrite( ops_pddltext, ops_pddlleng, 1, ops_pddlout ) {} } while (0)
 #endif
 
 /* Gets input and stuffs it into "buf".  number of characters read, or YY_NULL,
@@ -755,7 +755,7 @@ static int input (void );
 		int c = '*'; \
 		size_t n; \
 		for ( n = 0; n < max_size && \
-			     (c = getc( ops_pddlin )) != EOF && c != '\n'; ++n ) \
+			     (c = getc( ops_pddlin ) != EOF && c != '\n'; ++n ) \
 			buf[n] = (char) c; \
 		if ( c == '\n' ) \
 			buf[n++] = (char) c; \
@@ -766,7 +766,7 @@ static int input (void );
 	else \
 		{ \
 		errno=0; \
-		while ( (result = fread(buf, 1, max_size, ops_pddlin))==0 && ferror(ops_pddlin)) \
+		while ( (result = fread(buf, 1, max_size, ops_pddlin)==0 && ferror(ops_pddlin) \
 			{ \
 			if( errno != EINTR) \
 				{ \
@@ -1204,7 +1204,7 @@ case YY_STATE_EOF(OVERREAD):
 	case YY_END_OF_BUFFER:
 		{
 		/* Amount of text matched not including the EOB char. */
-		int yy_amount_of_matched_text = (int) (yy_cp - (yytext_ptr)) - 1;
+		int yy_amount_of_matched_text = (int) (yy_cp - (yytext_ptr) - 1;
 
 		/* Undo the effects of YY_DO_BEFORE_ACTION. */
 		*yy_cp = (yy_hold_char);
@@ -1370,7 +1370,7 @@ static int yy_get_next_buffer (void)
 	/* Try to read more data. */
 
 	/* First move last chars to start of buffer. */
-	number_to_move = (int) ((yy_c_buf_p) - (yytext_ptr)) - 1;
+	number_to_move = (int) ((yy_c_buf_p) - (yytext_ptr) - 1;
 
 	for ( i = 0; i < number_to_move; ++i )
 		*(dest++) = *(source++);
@@ -1683,7 +1683,7 @@ static int yy_get_next_buffer (void)
 	ops_pddl_load_buffer_state( );
 
 	/* We don't actually know whether we did this switch during
-	 * EOF (ops_pddlwrap()) processing, but the only time this flag
+	 * EOF (ops_pddlwrap() processing, but the only time this flag
 	 * is looked at is after ops_pddlwrap() is called, so it's safe
 	 * to go ahead and always set it.
 	 */
@@ -1865,7 +1865,7 @@ static void ops_pddlensure_buffer_stack (void)
 {
 	int num_to_alloc;
     
-	if (!(yy_buffer_stack)) {
+	if (!(yy_buffer_stack) {
 
 		/* First allocation is just for 2 elements, since we don't know if this
 		 * scanner will even need a stack. We use 2 instead of 1 to avoid an
@@ -1878,14 +1878,14 @@ static void ops_pddlensure_buffer_stack (void)
 		if ( ! (yy_buffer_stack) )
 			YY_FATAL_ERROR( "out of dynamic memory in ops_pddlensure_buffer_stack()" );
 								  
-		memset((yy_buffer_stack), 0, num_to_alloc * sizeof(struct yy_buffer_state*));
+		memset((yy_buffer_stack), 0, num_to_alloc * sizeof(struct yy_buffer_state*);
 				
 		(yy_buffer_stack_max) = num_to_alloc;
 		(yy_buffer_stack_top) = 0;
 		return;
 	}
 
-	if ((yy_buffer_stack_top) >= ((yy_buffer_stack_max)) - 1){
+	if ((yy_buffer_stack_top) >= ((yy_buffer_stack_max) - 1){
 
 		/* Increase the buffer to prepare for a possible push. */
 		int grow_size = 8 /* arbitrary grow size */;
@@ -1899,7 +1899,7 @@ static void ops_pddlensure_buffer_stack (void)
 			YY_FATAL_ERROR( "out of dynamic memory in ops_pddlensure_buffer_stack()" );
 
 		/* zero only the new slots.*/
-		memset((yy_buffer_stack) + (yy_buffer_stack_max), 0, grow_size * sizeof(struct yy_buffer_state*));
+		memset((yy_buffer_stack) + (yy_buffer_stack_max), 0, grow_size * sizeof(struct yy_buffer_state*);
 		(yy_buffer_stack_max) = num_to_alloc;
 	}
 }

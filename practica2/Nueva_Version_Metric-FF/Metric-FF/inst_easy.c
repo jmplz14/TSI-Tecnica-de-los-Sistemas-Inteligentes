@@ -499,7 +499,7 @@ void encode_easy_unaries_as_types( void )
        * if there already is this intersected type, set type of this
        * param to its number, otherwise create the new intersected type.
        */
-      if ( (intersected_type = find_intersected_type( T, num_T )) != -1 ) {
+      if ( (intersected_type = find_intersected_type( T, num_T ) != -1 ) {
 	/* type already there
 	 */
 	o->var_types[i] = intersected_type;
@@ -556,7 +556,7 @@ void encode_easy_unaries_as_types( void )
 	if ( num_T == 1 ) {
 	  continue;
 	}
-	if ( (intersected_type = find_intersected_type( T, num_T )) != -1 ) {
+	if ( (intersected_type = find_intersected_type( T, num_T ) != -1 ) {
 	  e->var_types[i] = intersected_type;
 	  continue;
 	}

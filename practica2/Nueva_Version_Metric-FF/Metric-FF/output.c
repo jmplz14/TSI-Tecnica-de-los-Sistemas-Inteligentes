@@ -1291,7 +1291,7 @@ void print_Fact( Fact *f )
       if ( f->args[j] >= 0 ) {
 	printf("%s", gconstants[(f->args)[j]]);
       } else {
-	printf("x%d", DECODE_VAR( f->args[j] ));
+	printf("x%d", DECODE_VAR( f->args[j] );
       }
     }
     printf(")");
@@ -1305,7 +1305,7 @@ void print_Fact( Fact *f )
       if ( f->args[j] >= 0 ) {
 	printf("%s", gconstants[(f->args)[j]]);
       } else {
-	printf("x%d", DECODE_VAR( f->args[j] ));
+	printf("x%d", DECODE_VAR( f->args[j] );
       }
     }
     printf(")");
@@ -1318,7 +1318,7 @@ void print_Fact( Fact *f )
     if ( f->args[j] >= 0 ) {
       printf("%s", gconstants[(f->args)[j]]);
     } else {
-      printf("x%d", DECODE_VAR( f->args[j] ));
+      printf("x%d", DECODE_VAR( f->args[j] );
     }
   }
   printf(")");
@@ -1339,7 +1339,7 @@ void print_Fluent( Fluent *f )
     if ( f->args[j] >= 0 ) {
       printf("%s", gconstants[(f->args)[j]]);
     } else {
-      printf("x%d", DECODE_VAR( f->args[j] ));
+      printf("x%d", DECODE_VAR( f->args[j] );
     }
   }
   printf(")");

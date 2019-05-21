@@ -913,7 +913,7 @@ void instantiate_exp( ExpNode **n )
     instantiate_exp( &((*n)->son) );
     if ( (*n)->son->connective != NUMBER ) break;
     (*n)->connective = NUMBER;
-    (*n)->value = ((float) (-1)) * (*n)->son->value;
+    (*n)->value = ((float) (-1) * (*n)->son->value;
     free_ExpNode( (*n)->son );
     (*n)->son = NULL;
     break;    

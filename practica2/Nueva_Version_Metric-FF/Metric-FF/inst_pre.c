@@ -220,7 +220,7 @@ void collect_all_strings( void )
   gnum_types = 1;
 
   for ( f = gorig_constant_list; f; f = f->next ) {
-    if ( (type_num = position_in_types_table( f->item->next->item )) == -1 ) {
+    if ( (type_num = position_in_types_table( f->item->next->item ) == -1 ) {
       if ( gnum_types == MAX_TYPES ) {
 	printf("\ntoo many types! increase MAX_TYPES (currently %d)\n\n",
 	       MAX_TYPES);
@@ -235,7 +235,7 @@ void collect_all_strings( void )
       type_num = gnum_types++;
     }
 
-    if ( (c_num = position_in_constants_table( f->item->item )) == -1 ) {
+    if ( (c_num = position_in_constants_table( f->item->item ) == -1 ) {
       if ( gnum_constants == MAX_CONSTANTS ) {
 	printf("\ntoo many constants! increase MAX_CONSTANTS (currently %d)\n\n",
 	       MAX_CONSTANTS);
@@ -277,7 +277,7 @@ void collect_all_strings( void )
   gnum_predicates = 1;
 
   for ( f = gpredicates_and_types; f; f = f->next ) {
-    if ( (p_num = position_in_predicates_table( f->item->item )) != -1 ) {
+    if ( (p_num = position_in_predicates_table( f->item->item ) != -1 ) {
       printf("\npredicate %s declared twice!\n\n", f->item->item);
       exit( 1 );
     }
@@ -290,7 +290,7 @@ void collect_all_strings( void )
     strcpy( gpredicates[gnum_predicates], f->item->item );
     ar = 0;
     for ( t = f->item->next; t; t = t->next ) {
-      if ( (type_num = position_in_types_table( t->item )) == -1 ) {
+      if ( (type_num = position_in_types_table( t->item ) == -1 ) {
 	printf("\npredicate %s is declared to use unknown or empty type %s\n\n",
 	       f->item->item, t->item);
 	exit( 1 );
@@ -315,7 +315,7 @@ void collect_all_strings( void )
   gnum_functions = 1;
 
   for ( f = gfunctions_and_types; f; f = f->next ) {
-    if ( (p_num = position_in_functions_table( f->item->item )) != -1 ) {
+    if ( (p_num = position_in_functions_table( f->item->item ) != -1 ) {
       printf("\nfunction %s declared twice!\n\n", f->item->item);
       exit( 1 );
     }
@@ -328,7 +328,7 @@ void collect_all_strings( void )
     strcpy( gfunctions[gnum_functions], f->item->item );
     ar = 0;
     for ( t = f->item->next; t; t = t->next ) {
-      if ( (type_num = position_in_types_table( t->item )) == -1 ) {
+      if ( (type_num = position_in_types_table( t->item ) == -1 ) {
 	printf("\nfunction %s is declared to use unknown or empty type %s\n\n",
 	       f->item->item, t->item);
 	exit( 1 );
@@ -446,7 +446,7 @@ void create_integer_representation( void )
     sum += gnum_constants;/* space for equalities */
     gfull_initial = ( Fact * ) calloc( sum, sizeof( Fact ) );
     gfull_fluents_initial = ( FluentValue * )
-      calloc( sum, sizeof( FluentValue ));
+      calloc( sum, sizeof( FluentValue );
 
     for ( n = gorig_initial_facts->sons; n; n = n->next ) {
       if ( n->connective == ATOM ) {
@@ -511,7 +511,7 @@ void create_integer_representation( void )
     tmp = new_Operator( o->name, o->number_of_real_params );
 
     for ( ff = o->params; ff; ff = ff->next ) {
-      if ( (type_num = position_in_types_table( ff->item->next->item )) == -1 ) {
+      if ( (type_num = position_in_types_table( ff->item->next->item ) == -1 ) {
 	printf("\nwarning: parameter %s of op %s has unknown or empty type %s. skipping op",
 	       ff->item->item, o->name, ff->item->next->item);
 	break;
@@ -549,12 +549,12 @@ void create_integer_representation( void )
        */
       nn = o->effects->sons;
       while ( nn &&
-	      (tmp->effects = make_effect( nn, tmp->num_vars )) == NULL ) {
+	      (tmp->effects = make_effect( nn, tmp->num_vars ) == NULL ) {
 	nn = nn->next;
       }
       if ( nn ) {
 	for ( n = nn->next; n; n = n->next ) {
-	  if ( (tmp->effects->prev = make_effect( n, tmp->num_vars )) == NULL ) {
+	  if ( (tmp->effects->prev = make_effect( n, tmp->num_vars ) == NULL ) {
 	    continue;
 	  }
 	  tmp->effects->prev->next = tmp->effects;
@@ -631,7 +631,7 @@ void make_Fact( Fact *f, PlNode *n, int num_vars )
       f->args[m] = ENCODE_VAR( i );
     } else {
       if ( (f->args[m] =
-	    position_in_constants_table( t->item )) == -1 ) {
+	    position_in_constants_table( t->item ) == -1 ) {
 	printf("\nunknown constant %s in literal %s. check input files\n\n",
 	       t->item, n->atom->item);
 	exit( 1 );
@@ -702,7 +702,7 @@ void make_Fluent( Fluent *f, TokenList *atom, int num_vars )
       f->args[m] = ENCODE_VAR( i );
     } else {
       if ( (f->args[m] =
-	    position_in_constants_table( t->item )) == -1 ) {
+	    position_in_constants_table( t->item ) == -1 ) {
 	printf("\nunknown constant %s in function %s. check input files\n\n",
 	       t->item, atom->item);
 	exit( 1 );
@@ -769,7 +769,7 @@ WffNode *make_Wff( PlNode *p, int num_vars )
 	       p->atom->item);
       }
     }
-    if ( (t = position_in_types_table( p->atom->next->item )) == -1 ) {
+    if ( (t = position_in_types_table( p->atom->next->item ) == -1 ) {
       printf("\nwarning: quantified var %s has unknown or empty type %s. simplifying.\n\n",
 	     p->atom->item, p->atom->next->item);
       tmp->connective = ( p->connective == EX ) ? FAL : TRU;
@@ -875,7 +875,7 @@ Effect *make_effect( PlNode *p, int num_vars )
   int t, i;
 
   for ( n = p; n && n->connective == ALL; n = n->sons ) {
-    if ( (t = position_in_types_table( n->atom->next->item )) == -1 ) {
+    if ( (t = position_in_types_table( n->atom->next->item ) == -1 ) {
       printf("\nwarning: effect parameter %s has unknown or empty type %s. skipping effect.\n\n",
 	     n->atom->item, n->atom->next->item);
       return NULL;
@@ -1889,7 +1889,7 @@ void simplify_exp( ExpNode **n )
     simplify_exp( &((*n)->son) );
     if ( (*n)->son->connective != NUMBER ) break;
     (*n)->connective = NUMBER;
-    (*n)->value = ((float) (-1)) * (*n)->son->value;
+    (*n)->value = ((float) (-1) * (*n)->son->value;
     free_ExpNode( (*n)->son );
     (*n)->son = NULL;
     break;
@@ -2142,7 +2142,7 @@ void replace_var_with_const_in_exp( ExpNode **n, int var, int constant )
     replace_var_with_const_in_exp( &((*n)->son), var, constant );
     if ( (*n)->son->connective != NUMBER ) break;
     (*n)->connective = NUMBER;
-    (*n)->value = ((float) (-1)) * (*n)->son->value;
+    (*n)->value = ((float) (-1) * (*n)->son->value;
     free_ExpNode( (*n)->son );
     (*n)->son = NULL;
     break;
@@ -3013,7 +3013,7 @@ void split_domain( void )
   }
 
   for ( i = 0; i < gnum_operators; i++ ) {
-    if ( (m = is_dnf( goperators[i]->preconds )) != -1 ) {
+    if ( (m = is_dnf( goperators[i]->preconds ) != -1 ) {
       for ( e = goperators[i]->effects; e; e = e->next ) {
 	if ( is_dnf( e->conditions ) == -1 ) {
 	  break;

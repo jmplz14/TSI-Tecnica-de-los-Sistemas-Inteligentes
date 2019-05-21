@@ -1105,7 +1105,7 @@ Bool set_relevants_in_exp( ExpNode **n )
     if ( !set_relevants_in_exp( &((*n)->son) ) ) return FALSE;
     if ( (*n)->son->connective != NUMBER ) break;
     (*n)->connective = NUMBER;
-    (*n)->value = ((float) (-1)) * (*n)->son->value;
+    (*n)->value = ((float) (-1) * (*n)->son->value;
     free_ExpNode( (*n)->son );
     (*n)->son = NULL;
     break;    
@@ -1831,7 +1831,7 @@ void instantiate_exp_by_action( ExpNode **n, Action *a )
     instantiate_exp_by_action( &((*n)->son), a );
     if ( (*n)->son->connective != NUMBER ) break;
     (*n)->connective = NUMBER;
-    (*n)->value = ((float) (-1)) * (*n)->son->value;
+    (*n)->value = ((float) (-1) * (*n)->son->value;
     free_ExpNode( (*n)->son );
     (*n)->son = NULL;
     break;    

@@ -702,7 +702,7 @@ void extract_plan_fragment( State *S )
 
   num_ops = 0;
   for ( i = lehc_current_start; i; i = i->father ) {
-    if ( (start = plan_state_hashed( &(i->S) )) != NULL ) {
+    if ( (start = plan_state_hashed( &(i->S) ) != NULL ) {
       for ( i_ph = start->next_step; i_ph; i_ph = i_ph->next_step ) {
 	i_ph->step = -1;
       }
@@ -931,8 +931,8 @@ Bool do_best_first_search( void )
    float aux= state_cost(&S, first);
    times(&end);
    TIME(gsearch_time);
-   if ( LESS( first->h, min ) || (aux < min_gc)) {
-     if (LESS( first->h, min )) {min = first->h; min_gc = aux; gcmd_line.display_info=1;}
+   if ( LESS( first->h, min ) || (aux < min_gc) {
+     if (LESS( first->h, min ) {min = first->h; min_gc = aux; gcmd_line.display_info=1;}
      if (aux < min_gc) {min_gc = aux; gcmd_line.display_info=1;}
      if ( inicio ) {
        if ( gcmd_line.display_info ) {
@@ -1081,7 +1081,7 @@ Bool do_best_first_search( void )
        }/* no father, no steps, no cost */
      } else {
        cost += (glnf_metric.pC[i] *
-         (S->f_V[glnf_metric.pF[i]] - ginitial_state.f_V[glnf_metric.pF[i]]));
+         (S->f_V[glnf_metric.pF[i]] - ginitial_state.f_V[glnf_metric.pF[i]]);
        }
      }
 

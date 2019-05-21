@@ -312,7 +312,7 @@ typedef short int yytype_int16;
 
 #ifndef YY_ATTRIBUTE
 # if (defined __GNUC__                                               \
-      && (2 < __GNUC__ || (__GNUC__ == 2 && 96 <= __GNUC_MINOR__)))  \
+      && (2 < __GNUC__ || (__GNUC__ == 2 && 96 <= __GNUC_MINOR__))  \
      || defined __SUNPRO_C && 0x5110 <= __SUNPRO_C
 #  define YY_ATTRIBUTE(Spec) __attribute__(Spec)
 # else
@@ -321,11 +321,11 @@ typedef short int yytype_int16;
 #endif
 
 #ifndef YY_ATTRIBUTE_PURE
-# define YY_ATTRIBUTE_PURE   YY_ATTRIBUTE ((__pure__))
+# define YY_ATTRIBUTE_PURE   YY_ATTRIBUTE ((__pure__)
 #endif
 
 #ifndef YY_ATTRIBUTE_UNUSED
-# define YY_ATTRIBUTE_UNUSED YY_ATTRIBUTE ((__unused__))
+# define YY_ATTRIBUTE_UNUSED YY_ATTRIBUTE ((__unused__)
 #endif
 
 #if !defined _Noreturn \
@@ -333,13 +333,13 @@ typedef short int yytype_int16;
 # if defined _MSC_VER && 1200 <= _MSC_VER
 #  define _Noreturn __declspec (noreturn)
 # else
-#  define _Noreturn YY_ATTRIBUTE ((__noreturn__))
+#  define _Noreturn YY_ATTRIBUTE ((__noreturn__)
 # endif
 #endif
 
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
-# define YYUSE(E) ((void) (E))
+# define YYUSE(E) ((void) (E)
 #else
 # define YYUSE(E) /* empty */
 #endif
@@ -410,7 +410,7 @@ typedef short int yytype_int16;
 #  endif
 #  if (defined __cplusplus && ! defined EXIT_SUCCESS \
        && ! ((defined YYMALLOC || defined malloc) \
-             && (defined YYFREE || defined free)))
+             && (defined YYFREE || defined free))
 #   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
 #   ifndef EXIT_SUCCESS
 #    define EXIT_SUCCESS 0
@@ -434,7 +434,7 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 
 #if (! defined yyoverflow \
      && (! defined __cplusplus \
-         || (defined YYSTYPE_IS_TRIVIAL && YYSTYPE_IS_TRIVIAL)))
+         || (defined YYSTYPE_IS_TRIVIAL && YYSTYPE_IS_TRIVIAL))
 
 /* A type that is properly aligned for any stack member.  */
 union yyalloc
@@ -449,7 +449,7 @@ union yyalloc
 /* The size of an array large to enough to hold all stacks, each with
    N elements.  */
 # define YYSTACK_BYTES(N) \
-     ((N) * (sizeof (yytype_int16) + sizeof (YYSTYPE)) \
+     ((N) * (sizeof (yytype_int16) + sizeof (YYSTYPE) \
       + YYSTACK_GAP_MAXIMUM)
 
 # define YYCOPY_NEEDED 1
@@ -478,7 +478,7 @@ union yyalloc
 # ifndef YYCOPY
 #  if defined __GNUC__ && 1 < __GNUC__
 #   define YYCOPY(Dst, Src, Count) \
-      __builtin_memcpy (Dst, Src, (Count) * sizeof (*(Src)))
+      __builtin_memcpy (Dst, Src, (Count) * sizeof (*(Src))
 #  else
 #   define YYCOPY(Dst, Src, Count)              \
       do                                        \
@@ -600,7 +600,7 @@ static const yytype_uint16 yytoknum[] =
 #define YYPACT_NINF -104
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-104)))
+  (!!((Yystate) == (-104))
 
 #define YYTABLE_NINF -1
 
@@ -806,7 +806,7 @@ do                                                              \
     }                                                           \
   else                                                          \
     {                                                           \
-      yyerror (YY_("syntax error: cannot back up")); \
+      yyerror (YY_("syntax error: cannot back up"); \
       YYERROR;                                                  \
     }                                                           \
 while (0)
@@ -902,7 +902,7 @@ yy_stack_print (yytype_int16 *yybottom, yytype_int16 *yytop)
 # define YY_STACK_PRINT(Bottom, Top)                            \
 do {                                                            \
   if (yydebug)                                                  \
-    yy_stack_print ((Bottom), (Top));                           \
+    yy_stack_print ((Bottom), (Top);                           \
 } while (0)
 
 
@@ -1100,7 +1100,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
     {
       int yyn = yypact[*yyssp];
       yyarg[yycount++] = yytname[yytoken];
-      if (!yypact_value_is_default (yyn))
+      if (!yypact_value_is_default (yyn)
         {
           /* Start YYX at -YYN if negative to avoid negative indexes in
              YYCHECK.  In other words, skip the first -YYN actions for
@@ -1113,7 +1113,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 
           for (yyx = yyxbegin; yyx < yyxend; ++yyx)
             if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR
-                && !yytable_value_is_error (yytable[yyx + yyn]))
+                && !yytable_value_is_error (yytable[yyx + yyn])
               {
                 if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
                   {
@@ -1125,7 +1125,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
                 {
                   YYSIZE_T yysize1 = yysize + yytnamerr (YY_NULLPTR, yytname[yyx]);
                   if (! (yysize <= yysize1
-                         && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+                         && yysize1 <= YYSTACK_ALLOC_MAXIMUM)
                     return 2;
                   yysize = yysize1;
                 }
@@ -1139,18 +1139,18 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
       case N:                               \
         yyformat = S;                       \
       break
-      YYCASE_(0, YY_("syntax error"));
-      YYCASE_(1, YY_("syntax error, unexpected %s"));
-      YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s"));
-      YYCASE_(3, YY_("syntax error, unexpected %s, expecting %s or %s"));
-      YYCASE_(4, YY_("syntax error, unexpected %s, expecting %s or %s or %s"));
-      YYCASE_(5, YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s"));
+      YYCASE_(0, YY_("syntax error");
+      YYCASE_(1, YY_("syntax error, unexpected %s");
+      YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s");
+      YYCASE_(3, YY_("syntax error, unexpected %s, expecting %s or %s");
+      YYCASE_(4, YY_("syntax error, unexpected %s, expecting %s or %s or %s");
+      YYCASE_(5, YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s");
 # undef YYCASE_
     }
 
   {
     YYSIZE_T yysize1 = yysize + yystrlen (yyformat);
-    if (! (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+    if (! (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM)
       return 2;
     yysize = yysize1;
   }
@@ -1159,7 +1159,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
     {
       *yymsg_alloc = 2 * yysize;
       if (! (yysize <= *yymsg_alloc
-             && *yymsg_alloc <= YYSTACK_ALLOC_MAXIMUM))
+             && *yymsg_alloc <= YYSTACK_ALLOC_MAXIMUM)
         *yymsg_alloc = YYSTACK_ALLOC_MAXIMUM;
       return 1;
     }
@@ -1260,7 +1260,7 @@ yyparse (void)
   YYSIZE_T yymsg_alloc = sizeof yymsgbuf;
 #endif
 
-#define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
+#define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N)
 
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
@@ -1270,7 +1270,7 @@ yyparse (void)
   yyvsp = yyvs = yyvsa;
   yystacksize = YYINITDEPTH;
 
-  YYDPRINTF ((stderr, "Starting parse\n"));
+  YYDPRINTF ((stderr, "Starting parse\n");
 
   yystate = 0;
   yyerrstatus = 0;
@@ -1328,7 +1328,7 @@ yyparse (void)
       {
         yytype_int16 *yyss1 = yyss;
         union yyalloc *yyptr =
-          (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize));
+          (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize);
         if (! yyptr)
           goto yyexhaustedlab;
         YYSTACK_RELOCATE (yyss_alloc, yyss);
@@ -1344,13 +1344,13 @@ yyparse (void)
       yyvsp = yyvs + yysize - 1;
 
       YYDPRINTF ((stderr, "Stack size increased to %lu\n",
-                  (unsigned long int) yystacksize));
+                  (unsigned long int) yystacksize);
 
       if (yyss + yystacksize - 1 <= yyssp)
         YYABORT;
     }
 
-  YYDPRINTF ((stderr, "Entering state %d\n", yystate));
+  YYDPRINTF ((stderr, "Entering state %d\n", yystate);
 
   if (yystate == YYFINAL)
     YYACCEPT;
@@ -1367,7 +1367,7 @@ yybackup:
 
   /* First try to decide what to do without reference to lookahead token.  */
   yyn = yypact[yystate];
-  if (yypact_value_is_default (yyn))
+  if (yypact_value_is_default (yyn)
     goto yydefault;
 
   /* Not known => get a lookahead token if don't already have one.  */
@@ -1375,14 +1375,14 @@ yybackup:
   /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
   if (yychar == YYEMPTY)
     {
-      YYDPRINTF ((stderr, "Reading a token: "));
+      YYDPRINTF ((stderr, "Reading a token: ");
       yychar = yylex ();
     }
 
   if (yychar <= YYEOF)
     {
       yychar = yytoken = YYEOF;
-      YYDPRINTF ((stderr, "Now at end of input.\n"));
+      YYDPRINTF ((stderr, "Now at end of input.\n");
     }
   else
     {
@@ -1398,7 +1398,7 @@ yybackup:
   yyn = yytable[yyn];
   if (yyn <= 0)
     {
-      if (yytable_value_is_error (yyn))
+      if (yytable_value_is_error (yyn)
         goto yyerrlab;
       yyn = -yyn;
       goto yyreduce;
@@ -1476,8 +1476,8 @@ yyreduce:
   case 6:
 #line 208 "scan-fct_pddl.y" /* yacc.c:1646  */
     { 
-  (yyval.pstring) = new_Token( strlen((yyvsp[-1].string))+1 );
-  strcpy((yyval.pstring), (yyvsp[-1].string));
+  (yyval.pstring) = new_Token( strlen((yyvsp[-1].string)+1 );
+  strcpy((yyval.pstring), (yyvsp[-1].string);
 }
 #line 1483 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
     break;
@@ -1744,13 +1744,13 @@ yyreduce:
 
   (yyval.pPlNode)->lh = new_ParseExpNode( FHEAD );
   (yyval.pPlNode)->lh->atom = new_TokenList();
-  (yyval.pPlNode)->lh->atom->item = new_Token( strlen((yyvsp[-4].string))+1 );
+  (yyval.pPlNode)->lh->atom->item = new_Token( strlen((yyvsp[-4].string)+1 );
   strcpy( (yyval.pPlNode)->lh->atom->item, (yyvsp[-4].string) );
   (yyval.pPlNode)->lh->atom->next = (yyvsp[-3].pTokenList);
 
   (yyval.pPlNode)->rh = new_ParseExpNode( NUMBER );
   (yyval.pPlNode)->rh->atom = new_TokenList();
-  (yyval.pPlNode)->rh->atom->item = new_Token( strlen((yyvsp[-1].string))+1 );
+  (yyval.pPlNode)->rh->atom->item = new_Token( strlen((yyvsp[-1].string)+1 );
   strcpy( (yyval.pPlNode)->rh->atom->item, (yyvsp[-1].string) );
 }
 #line 1757 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
@@ -1764,12 +1764,12 @@ yyreduce:
 
   (yyval.pPlNode)->lh = new_ParseExpNode( FHEAD );
   (yyval.pPlNode)->lh->atom = new_TokenList();
-  (yyval.pPlNode)->lh->atom->item = new_Token( strlen((yyvsp[-2].string))+1 );
+  (yyval.pPlNode)->lh->atom->item = new_Token( strlen((yyvsp[-2].string)+1 );
   strcpy( (yyval.pPlNode)->lh->atom->item, (yyvsp[-2].string) );
 
   (yyval.pPlNode)->rh = new_ParseExpNode( NUMBER );
   (yyval.pPlNode)->rh->atom = new_TokenList();
-  (yyval.pPlNode)->rh->atom->item = new_Token( strlen((yyvsp[-1].string))+1 );
+  (yyval.pPlNode)->rh->atom->item = new_Token( strlen((yyvsp[-1].string)+1 );
   strcpy( (yyval.pPlNode)->rh->atom->item, (yyvsp[-1].string) );
 }
 #line 1776 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
@@ -1780,7 +1780,7 @@ yyreduce:
     { 
   (yyval.pParseExpNode) = new_ParseExpNode( NUMBER );
   (yyval.pParseExpNode)->atom = new_TokenList();
-  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[0].string))+1 );
+  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[0].string)+1 );
   strcpy( (yyval.pParseExpNode)->atom->item, (yyvsp[0].string) );
 }
 #line 1787 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
@@ -1791,7 +1791,7 @@ yyreduce:
     {
   (yyval.pParseExpNode) = new_ParseExpNode( FHEAD );
   (yyval.pParseExpNode)->atom = new_TokenList();
-  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[-2].string))+1 );
+  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[-2].string)+1 );
   strcpy( (yyval.pParseExpNode)->atom->item, (yyvsp[-2].string) );
   (yyval.pParseExpNode)->atom->next = (yyvsp[-1].pTokenList);
 }
@@ -1852,7 +1852,7 @@ yyreduce:
     { 
   (yyval.pParseExpNode) = new_ParseExpNode( NUMBER );
   (yyval.pParseExpNode)->atom = new_TokenList();
-  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[0].string))+1 );
+  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[0].string)+1 );
   strcpy( (yyval.pParseExpNode)->atom->item, (yyvsp[0].string) );
 }
 #line 1859 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
@@ -1863,7 +1863,7 @@ yyreduce:
     {
   (yyval.pParseExpNode) = new_ParseExpNode( FHEAD );
   (yyval.pParseExpNode)->atom = new_TokenList();
-  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[-2].string))+1 );
+  (yyval.pParseExpNode)->atom->item = new_Token( strlen((yyvsp[-2].string)+1 );
   strcpy( (yyval.pParseExpNode)->atom->item, (yyvsp[-2].string) );
   (yyval.pParseExpNode)->atom->next = (yyvsp[-1].pTokenList);
 }
@@ -1978,8 +1978,8 @@ yyreduce:
   case 59:
 #line 675 "scan-fct_pddl.y" /* yacc.c:1646  */
     { 
-  (yyval.pstring) = new_Token(strlen((yyvsp[0].string)) + 1);
-  strcpy((yyval.pstring), (yyvsp[0].string));
+  (yyval.pstring) = new_Token(strlen((yyvsp[0].string) + 1);
+  strcpy((yyval.pstring), (yyvsp[0].string);
 }
 #line 1985 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
     break;
@@ -1987,8 +1987,8 @@ yyreduce:
   case 60:
 #line 681 "scan-fct_pddl.y" /* yacc.c:1646  */
     { 
-  (yyval.pstring) = new_Token(strlen((yyvsp[0].string)) + 1);
-  strcpy((yyval.pstring), (yyvsp[0].string));
+  (yyval.pstring) = new_Token(strlen((yyvsp[0].string) + 1);
+  strcpy((yyval.pstring), (yyvsp[0].string);
 }
 #line 1994 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
     break;
@@ -1997,8 +1997,8 @@ yyreduce:
 #line 691 "scan-fct_pddl.y" /* yacc.c:1646  */
     {
   (yyval.pTokenList) = new_TokenList();
-  (yyval.pTokenList)->item = new_Token(strlen((yyvsp[0].string)) + 1);
-  strcpy((yyval.pTokenList)->item, (yyvsp[0].string));
+  (yyval.pTokenList)->item = new_Token(strlen((yyvsp[0].string) + 1);
+  strcpy((yyval.pTokenList)->item, (yyvsp[0].string);
 }
 #line 2004 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
     break;
@@ -2007,8 +2007,8 @@ yyreduce:
 #line 698 "scan-fct_pddl.y" /* yacc.c:1646  */
     {
   (yyval.pTokenList) = new_TokenList();
-  (yyval.pTokenList)->item = new_Token(strlen((yyvsp[-1].string)) + 1);
-  strcpy((yyval.pTokenList)->item, (yyvsp[-1].string));
+  (yyval.pTokenList)->item = new_Token(strlen((yyvsp[-1].string) + 1);
+  strcpy((yyval.pTokenList)->item, (yyvsp[-1].string);
   (yyval.pTokenList)->next = (yyvsp[0].pTokenList);
 }
 #line 2015 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
@@ -2024,7 +2024,7 @@ yyreduce:
 #line 713 "scan-fct_pddl.y" /* yacc.c:1646  */
     { 
   (yyval.pTypedList) = new_TypedList();
-  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-4].string))+1 );
+  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-4].string)+1 );
   strcpy( (yyval.pTypedList)->name, (yyvsp[-4].string) );
   (yyval.pTypedList)->type = (yyvsp[-2].pTokenList);
   (yyval.pTypedList)->next = (yyvsp[0].pTypedList);
@@ -2036,10 +2036,10 @@ yyreduce:
 #line 722 "scan-fct_pddl.y" /* yacc.c:1646  */
     {
   (yyval.pTypedList) = new_TypedList();
-  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-3].string))+1 );
+  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-3].string)+1 );
   strcpy( (yyval.pTypedList)->name, (yyvsp[-3].string) );
   (yyval.pTypedList)->type = new_TokenList();
-  (yyval.pTypedList)->type->item = new_Token( strlen((yyvsp[-1].string))+1 );
+  (yyval.pTypedList)->type->item = new_Token( strlen((yyvsp[-1].string)+1 );
   strcpy( (yyval.pTypedList)->type->item, (yyvsp[-1].string) );
   (yyval.pTypedList)->next = (yyvsp[0].pTypedList);
 }
@@ -2050,7 +2050,7 @@ yyreduce:
 #line 733 "scan-fct_pddl.y" /* yacc.c:1646  */
     {
   (yyval.pTypedList) = new_TypedList();
-  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-1].string))+1 );
+  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-1].string)+1 );
   strcpy( (yyval.pTypedList)->name, (yyvsp[-1].string) );
   if ( (yyvsp[0].pTypedList) ) {/* another element (already typed) is following */
     (yyval.pTypedList)->type = copy_TokenList( (yyvsp[0].pTypedList)->type );
@@ -2074,7 +2074,7 @@ yyreduce:
 #line 755 "scan-fct_pddl.y" /* yacc.c:1646  */
     { 
   (yyval.pTypedList) = new_TypedList();
-  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-4].string))+1 );
+  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-4].string)+1 );
   strcpy( (yyval.pTypedList)->name, (yyvsp[-4].string) );
   (yyval.pTypedList)->type = (yyvsp[-2].pTokenList);
   (yyval.pTypedList)->next = (yyvsp[0].pTypedList);
@@ -2086,10 +2086,10 @@ yyreduce:
 #line 764 "scan-fct_pddl.y" /* yacc.c:1646  */
     {
   (yyval.pTypedList) = new_TypedList();
-  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-3].string))+1 );
+  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-3].string)+1 );
   strcpy( (yyval.pTypedList)->name, (yyvsp[-3].string) );
   (yyval.pTypedList)->type = new_TokenList();
-  (yyval.pTypedList)->type->item = new_Token( strlen((yyvsp[-1].string))+1 );
+  (yyval.pTypedList)->type->item = new_Token( strlen((yyvsp[-1].string)+1 );
   strcpy( (yyval.pTypedList)->type->item, (yyvsp[-1].string) );
   (yyval.pTypedList)->next = (yyvsp[0].pTypedList);
 }
@@ -2100,7 +2100,7 @@ yyreduce:
 #line 775 "scan-fct_pddl.y" /* yacc.c:1646  */
     {
   (yyval.pTypedList) = new_TypedList();
-  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-1].string))+1 );
+  (yyval.pTypedList)->name = new_Token( strlen((yyvsp[-1].string)+1 );
   strcpy( (yyval.pTypedList)->name, (yyvsp[-1].string) );
   if ( (yyvsp[0].pTypedList) ) {/* another element (already typed) is following */
     (yyval.pTypedList)->type = copy_TokenList( (yyvsp[0].pTypedList)->type );
@@ -2117,8 +2117,8 @@ yyreduce:
   case 71:
 #line 796 "scan-fct_pddl.y" /* yacc.c:1646  */
     { 
-  (yyval.pstring) = new_Token(strlen((yyvsp[0].string)) + 1);
-  strcpy((yyval.pstring), (yyvsp[0].string));
+  (yyval.pstring) = new_Token(strlen((yyvsp[0].string) + 1);
+  strcpy((yyval.pstring), (yyvsp[0].string);
 }
 #line 2124 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
     break;
@@ -2165,8 +2165,8 @@ yyreduce:
 #line 855 "scan-fct_pddl.y" /* yacc.c:1646  */
     {
   (yyval.pTokenList) = new_TokenList();
-  (yyval.pTokenList)->item = new_Token(strlen((yyvsp[-1].string)) + 1);
-  strcpy((yyval.pTokenList)->item, (yyvsp[-1].string));
+  (yyval.pTokenList)->item = new_Token(strlen((yyvsp[-1].string) + 1);
+  strcpy((yyval.pTokenList)->item, (yyvsp[-1].string);
   (yyval.pTokenList)->next = (yyvsp[0].pTokenList);
 }
 #line 2173 "scan-fct_pddl.tab.c" /* yacc.c:1646  */
@@ -2223,7 +2223,7 @@ yyerrlab:
     {
       ++yynerrs;
 #if ! YYERROR_VERBOSE
-      yyerror (YY_("syntax error"));
+      yyerror (YY_("syntax error");
 #else
 # define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
                                         yyssp, yytoken)
@@ -2313,7 +2313,7 @@ yyerrlab1:
   for (;;)
     {
       yyn = yypact[yystate];
-      if (!yypact_value_is_default (yyn))
+      if (!yypact_value_is_default (yyn)
         {
           yyn += YYTERROR;
           if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
@@ -2367,7 +2367,7 @@ yyabortlab:
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
 yyexhaustedlab:
-  yyerror (YY_("memory exhausted"));
+  yyerror (YY_("memory exhausted");
   yyresult = 2;
   /* Fall through.  */
 #endif

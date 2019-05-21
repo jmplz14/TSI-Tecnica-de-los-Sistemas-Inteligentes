@@ -317,7 +317,7 @@ typedef unsigned char Bool;
 
 /* code a param number into a negative number and vice versa
  */
-#define ENCODE_VAR( val ) (val * (-1)) - 1
+#define ENCODE_VAR( val ) (val * (-1) - 1
 #define DECODE_VAR( val ) (val + 1) * (-1)
 
 #define GET_CONSTANT( val, pointer ) ( val >= 0 ) ? val : pointer->inst_table[DECODE_VAR( val )]
@@ -325,7 +325,7 @@ typedef unsigned char Bool;
 
 /* Check allocated memory
  */
-#define CHECK_PTR(p) if (NULL == (p)) { \
+#define CHECK_PTR(p) if (NULL == (p) { \
   fprintf(stdout, "\n\aNO MEMORY in file %s:%d\n\n", __FILE__, __LINE__); \
   exit(1);}
 
