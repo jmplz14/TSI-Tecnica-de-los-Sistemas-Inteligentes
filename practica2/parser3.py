@@ -5,7 +5,7 @@ Created on Tue May 21 19:01:27 2019
 
 @author: jose
 """
-def devolverCaracteristicas(nuevo,pos):
+def devolverCaracteristicas(nuevo,pos,tipo):
     personajes_objetos = ""
     posiciones = ""
     if nuevo != '':
@@ -20,9 +20,12 @@ def devolverCaracteristicas(nuevo,pos):
                     
         if tipos_objetos.find(dividir[1]) != -1:
             posiciones += "(posicion_objeto " + dividir[0] + " " + pos + ")\n"
+            
+    if tipo != '':
+        posiciones += "(tipo_terreno " + pos + " " + tipo + ")\n"
     return personajes_objetos, posiciones
     
-f = open("ejer2.txt", "r")
+f = open("ejer3.txt", "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
@@ -43,6 +46,7 @@ stringOrientacion = "norte este sur oeste - orientacion"
 
 tipos_personajes = "bruja princesa principe profesor dicaprio"
 tipos_objetos = "manzana oro algoritmo oscar rosa"
+tipos_terreno = "piedra arena precipicio bosque agua"
 
 personajes_objetos = ""
 posiciones = ""
@@ -59,33 +63,34 @@ for x in f:
         zonas = zonas.replace("\n","")
 
         zonas = zonas.split(";")
+        print(zonas)
         zonas_conectadas = list()
         distancias_zonas = list()
     
         conectado = ""
         
         zonas_conectadas.append(zonas[0])
-        zonas_conectadas.append(zonas[3])
+        zonas_conectadas.append(zonas[4])
         
-        personajes, pos = devolverCaracteristicas(zonas[1],zonas[0])
+        personajes, pos = devolverCaracteristicas(zonas[1],zonas[0],zonas[2])
         personajes_objetos += personajes
         posiciones += pos
             
-        personajes, pos = devolverCaracteristicas(zonas[4],zonas[3])
+        personajes, pos = devolverCaracteristicas(zonas[5],zonas[4],zonas[6])
         personajes_objetos += personajes
         posiciones += pos
-        distancias_zonas.append(zonas[2])
+        distancias_zonas.append(zonas[3])
         
-        if len(zonas) == 8:
+        if len(zonas) == 11:
 
-            zonas_conectadas.append(zonas[6])
+            zonas_conectadas.append(zonas[8])
             
             
-            personajes, pos = devolverCaracteristicas(zonas[7],zonas[6])
+            personajes, pos = devolverCaracteristicas(zonas[9],zonas[8],zonas[10])
             personajes_objetos += personajes
             posiciones += pos
             
-            distancias_zonas.append(zonas[5])                    
+            distancias_zonas.append(zonas[7])                    
                     
                 
                 
@@ -132,10 +137,10 @@ for x in f:
     
         
     #print(conectado)
-    #for i in nuevo.split(";"):
+    #for i in nuevo.split(";"):tipo_terreno
      #   print(i)
 
-f = open("ProblemaEjer2.pddl", "w")
+f = open("prueba.pddl", "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")
