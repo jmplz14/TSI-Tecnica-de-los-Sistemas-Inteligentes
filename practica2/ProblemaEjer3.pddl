@@ -1,32 +1,64 @@
-(define (problem PEjer2)
-(:domain DEjer2)(:objects
+(define (problem PEjer3)
+(:domain DEjer3)(:objects
 z1 z2 z3 z4 z5 z6 z7 z8 z9 z10 z11 z12 z13 z14 z15 z16 z17 z18 z19 z20 z21 z22 z23 z24 z25 - zona
+piedra agua bosque arena precipicio - suelos
 jugador1 - jugador
-bruja1 - bruja
 dicaprio1 - dicaprio
-princesa1 - princesa
+zapatilla1 - zapatilla
 rosa1 - rosa
-principe1 - principe
+oscar1 - oscar
+bikini1 - bikini
+princesa1 - princesa
 manzana1 - manzana
 algoritmo1 - algoritmo
-oscar1 - oscar
-profesor1 - profesor
 oro1 - oro
+bruja1 - bruja
+principe1 - principe
+profesor1 - profesor
 norte este sur oeste - orientacion
 )
 (:init
+(jugador_sin_objeto jugador1)
+(mochila_vacia jugador1)
 (orientacion_jugador jugador1 norte)
 (posicion_jugador jugador1 z1)
-(posicion_personaje bruja1 z5)
-(posicion_personaje dicaprio1 z6)
-(posicion_personaje princesa1 z7)
-(posicion_objeto rosa1 z9)
-(posicion_personaje principe1 z10)
-(posicion_objeto manzana1 z11)
-(posicion_objeto algoritmo1 z12)
-(posicion_objeto oscar1 z18)
-(posicion_personaje profesor1 z20)
-(posicion_objeto oro1 z25)
+(tipo_terreno z1 arena)
+(tipo_terreno z2 arena)
+(tipo_terreno z3 piedra)
+(tipo_terreno z4 piedra)
+(tipo_terreno z5 piedra)
+(posicion_personaje dicaprio1 z5)
+(posicion_objeto zapatilla1 z6)
+(tipo_terreno z6 arena)
+(posicion_objeto rosa1 z7)
+(tipo_terreno z7 piedra)
+(posicion_objeto oscar1 z8)
+(tipo_terreno z8 arena)
+(tipo_terreno z9 bosque)
+(posicion_objeto bikini1 z9)
+(tipo_terreno z10 bosque)
+(posicion_personaje princesa1 z11)
+(tipo_terreno z11 bosque)
+(tipo_terreno z13 precipicio)
+(posicion_objeto manzana1 z12)
+(tipo_terreno z12 arena)
+(posicion_objeto algoritmo1 z14)
+(tipo_terreno z14 piedra)
+(posicion_objeto oro1 z15)
+(tipo_terreno z15 arena)
+(tipo_terreno z16 arena)
+(posicion_personaje bruja1 z16)
+(posicion_personaje principe1 z18)
+(tipo_terreno z18 piedra)
+(tipo_terreno z17 arena)
+(tipo_terreno z19 agua)
+(tipo_terreno z21 precipicio)
+(tipo_terreno z20 agua)
+(tipo_terreno z22 piedra)
+(tipo_terreno z23 piedra)
+(tipo_terreno z25 piedra)
+(tipo_terreno z24 piedra)
+(posicion_personaje profesor1 z24)
 (conectada oeste z2 z1)
 (conectada este z1 z2)
 (= (coste z2 z1) 1)
@@ -143,5 +175,4 @@ norte este sur oeste - orientacion
 (personaje_tiene profesor1 algoritmo1)
 (personaje_tiene bruja1 manzana1)
 (personaje_tiene dicaprio1 oscar1)
-))
-(:metric minimize (coste_total)))
+)))
