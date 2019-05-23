@@ -1,5 +1,5 @@
-(define (problem PEjer3)
-(:domain DEjer3)(:objects
+(define (problem PEjer5)
+(:domain DEjer5)(:objects
 z1 z2 z3 z4 z5 z6 z7 z8 z9 z10 z11 z12 z13 z14 z15 z16 z17 z18 z19 z20 z21 z22 z23 z24 z25 - zona
 piedra agua bosque arena precipicio - suelos
 jugador1 - jugador
@@ -170,6 +170,11 @@ norte este sur oeste - orientacion
 (= (coste z24 z23) 1)
 (= (coste_total) 0)
 (= (puntos_minimos) 10)
+(= (bolsillo bruja1) 1)
+(= (bolsillo princesa1) 5)
+(= (bolsillo dicaprio1) 1)
+(= (bolsillo principe1) 1)
+(= (bolsillo profesor1) 1)
 (= (valor_objeto rosa1 dicaprio1) 1)
 (= (valor_objeto rosa1 princesa1) 10)
 (= (valor_objeto rosa1 bruja1) 5)
@@ -197,5 +202,5 @@ norte este sur oeste - orientacion
 (= (valor_objeto oro1 profesor1) 1)
 )
 (:goal (AND
-(= (puntos_totales jugador1) (puntos_minimos))
+(> (puntos_totales jugador1) (puntos_minimos))
 )))

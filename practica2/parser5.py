@@ -14,20 +14,22 @@ def matrizPuntos(per,obj):
     objetos = ["oscar","rosa","manzana","algoritmo","oro"]
     personajes = ["dicaprio","princesa","bruja","profesor","principe"]
     valores_objetos = ""
-    for i in range(int(len(per)/2)):
-        for j in range(int(len(obj)/2)):
+    for i in range(int(len(obj)/2)):
+        for j in range(int(len(per)/2)):
             valor_i = objetos.index(obj[i*2 + 1])
             valor_j = personajes.index(per[j*2 + 1])
+            
             valores_objetos += "(= (valor_objeto " + str(obj[i*2]) + " " + (per[j*2]) + ") " + str(matriz[valor_i][valor_j]) + ")\n"
             
     return valores_objetos    
 
 personajes_introducidos = list()
 objetos_introducidos = list()
-
-def devolverCaracteristicas(nuevo,pos,tipo):
+cadena_bolsillos = ""
+def devolverCaracteristicas(nuevo,pos,tipo,bols_usado):
     personajes_objetos = ""
     posiciones = ""
+    bolsillos = ""
     if nuevo != '':
         personajes_objetos += nuevo.replace("-"," - ") + "\n"
         dividir = nuevo.split("-")
@@ -40,6 +42,10 @@ def devolverCaracteristicas(nuevo,pos,tipo):
             posiciones += "(posicion_personaje " + dividir[0] + " " + pos + ")\n"
             personajes_introducidos.append(dividir[0])
             personajes_introducidos.append(dividir[1])
+            copia = dividir[0]
+            if bols_usado.find(copia) == -1:
+                bolsillos += "(= (bolsillo " + dividir[0] + ") 1)\n"
+                
             
         if tipos_objetos.find(dividir[1]) != -1:
             posiciones += "(posicion_objeto " + dividir[0] + " " + pos + ")\n"
@@ -49,20 +55,37 @@ def devolverCaracteristicas(nuevo,pos,tipo):
             
     if tipo != '':
         posiciones += "(tipo_terreno " + pos + " " + tipo + ")\n"
-    return personajes_objetos, posiciones
+    return personajes_objetos, posiciones, bolsillos
 
-f = open("ejer3.txt", "r")
+f = open("ejer5.txt", "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
 num_zonas = f.readline()
 puntos_totales = f.readline()
+bolsillos = f.readline()
 dominio = dominio.split(":")[1]
 dominio = dominio.replace("\n","")
 problema = problema.split(":")[1]
 num_zonas = int(num_zonas.split(":")[1])
 puntos_totales = puntos_totales.split(":")[1]
 puntos_totales = puntos_totales.replace("\n","")
+
+bolsillos = bolsillos.split("[")[1]
+bolsillos = bolsillos.replace("]","")
+bolsillos = bolsillos.split()
+
+bolsillos_usado = ""
+
+for i in bolsillos:
+    divison = i.split(":")
+    bolsillos_usado += divison[0] + " "
+    cadena_bolsillos += "(= (bolsillo " + divison[0] + ") " + str(divison[1]) + ")\n" 
+
+
+#bolsillos = bolsillos.replace()
+
+
 
 stringZonas = ""
 
@@ -100,13 +123,16 @@ for x in f:
         zonas_conectadas.append(zonas[0])
         zonas_conectadas.append(zonas[4])
         
-        personajes, pos = devolverCaracteristicas(zonas[1],zonas[0],zonas[2])
+        personajes, pos, bol = devolverCaracteristicas(zonas[1],zonas[0],zonas[2],bolsillos_usado)
         personajes_objetos += personajes
         posiciones += pos
-            
-        personajes, pos = devolverCaracteristicas(zonas[5],zonas[4],zonas[6])
+        cadena_bolsillos += bol
+        
+        personajes, pos, bol = devolverCaracteristicas(zonas[5],zonas[4],zonas[6],bolsillos_usado)
         personajes_objetos += personajes
         posiciones += pos
+        cadena_bolsillos += bol
+        
         distancias_zonas.append(zonas[3])
         
         if len(zonas) == 11:
@@ -114,10 +140,10 @@ for x in f:
             zonas_conectadas.append(zonas[8])
             
             
-            personajes, pos = devolverCaracteristicas(zonas[9],zonas[8],zonas[10])
+            personajes, pos, bol = devolverCaracteristicas(zonas[9],zonas[8],zonas[10],bolsillos_usado)
             personajes_objetos += personajes
             posiciones += pos
-            
+            cadena_bolsillos += bol
             distancias_zonas.append(zonas[7])                    
                     
                 
@@ -167,8 +193,7 @@ for x in f:
     #print(conectado)
     #for i in nuevo.split(";"):tipo_terreno
      #   print(i)
-
-f = open("ProblemaEjer3.pddl", "w")
+f = open("ProblemaEjer5.pddl", "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")
@@ -186,12 +211,13 @@ f.write(posiciones)
 f.write(conesiones)
 f.write("(= (coste_total) 0)\n")
 f.write("(= (puntos_minimos) "+ puntos_totales +")\n")
+f.write(cadena_bolsillos)
 #f.write("(= (puntos_totales) 0)\n")
 f.write(matrizPuntos(personajes_introducidos,objetos_introducidos))
 f.write(")\n")
 
 f.write("(:goal (AND\n")
-f.write("(= (puntos_totales jugador1) (puntos_minimos))\n")
+f.write("(> (puntos_totales jugador1) (puntos_minimos))\n")
 f.write(")))\n")
 #f.write("(:metric minimize (coste_total)))")
 f.close()
