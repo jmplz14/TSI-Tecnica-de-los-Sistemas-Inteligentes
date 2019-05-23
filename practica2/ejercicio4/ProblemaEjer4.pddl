@@ -1,19 +1,21 @@
-(define (problem PEjer3)
-(:domain DEjer3)(:objects
+(define (problem PEjer4)
+(:domain DEjer4)(:objects
 z1 z2 z3 z4 z5 z6 z7 z8 z9 z10 z11 z12 z13 z14 z15 z16 z17 z18 z19 z20 z21 z22 z23 z24 z25 - zona
 piedra agua bosque arena precipicio - suelos
 jugador1 - jugador
 dicaprio1 - dicaprio
 zapatilla1 - zapatilla
-rosa1 - rosa
+manzana3 - manzana
 oscar1 - oscar
 bikini1 - bikini
 princesa1 - princesa
 manzana1 - manzana
-algoritmo1 - algoritmo
-oro1 - oro
+oscar1 - oscar
+manzana2 - manzana
 bruja1 - bruja
 principe1 - principe
+oscar2 - oscar
+oscar3 - oscar
 profesor1 - profesor
 norte este sur oeste - orientacion
 )
@@ -31,7 +33,7 @@ norte este sur oeste - orientacion
 (posicion_personaje dicaprio1 z5)
 (posicion_objeto zapatilla1 z6)
 (tipo_terreno z6 arena)
-(posicion_objeto rosa1 z7)
+(posicion_objeto manzana3 z7)
 (tipo_terreno z7 piedra)
 (posicion_objeto oscar1 z8)
 (tipo_terreno z8 arena)
@@ -43,14 +45,15 @@ norte este sur oeste - orientacion
 (tipo_terreno z13 precipicio)
 (posicion_objeto manzana1 z12)
 (tipo_terreno z12 arena)
-(posicion_objeto algoritmo1 z14)
+(posicion_objeto oscar1 z14)
 (tipo_terreno z14 piedra)
-(posicion_objeto oro1 z15)
+(posicion_objeto manzana2 z15)
 (tipo_terreno z15 arena)
 (tipo_terreno z16 arena)
 (posicion_personaje bruja1 z16)
 (posicion_personaje principe1 z18)
 (tipo_terreno z18 piedra)
+(posicion_objeto oscar2 z17)
 (tipo_terreno z17 arena)
 (tipo_terreno z19 agua)
 (tipo_terreno z21 precipicio)
@@ -58,6 +61,7 @@ norte este sur oeste - orientacion
 (tipo_terreno z22 piedra)
 (tipo_terreno z23 piedra)
 (tipo_terreno z25 piedra)
+(posicion_objeto oscar3 z25)
 (tipo_terreno z24 piedra)
 (posicion_personaje profesor1 z24)
 (conectada oeste z2 z1)
@@ -169,12 +173,12 @@ norte este sur oeste - orientacion
 (= (coste z23 z24) 1)
 (= (coste z24 z23) 1)
 (= (coste_total) 0)
-(= (puntos_minimos) 10)
-(= (valor_objeto rosa1 dicaprio1) 1)
-(= (valor_objeto rosa1 princesa1) 10)
-(= (valor_objeto rosa1 bruja1) 5)
-(= (valor_objeto rosa1 principe1) 3)
-(= (valor_objeto rosa1 profesor1) 4)
+(= (puntos_minimos) 50)
+(= (valor_objeto manzana3 dicaprio1) 3)
+(= (valor_objeto manzana3 princesa1) 1)
+(= (valor_objeto manzana3 bruja1) 10)
+(= (valor_objeto manzana3 principe1) 4)
+(= (valor_objeto manzana3 profesor1) 5)
 (= (valor_objeto oscar1 dicaprio1) 10)
 (= (valor_objeto oscar1 princesa1) 5)
 (= (valor_objeto oscar1 bruja1) 4)
@@ -185,16 +189,26 @@ norte este sur oeste - orientacion
 (= (valor_objeto manzana1 bruja1) 10)
 (= (valor_objeto manzana1 principe1) 4)
 (= (valor_objeto manzana1 profesor1) 5)
-(= (valor_objeto algoritmo1 dicaprio1) 4)
-(= (valor_objeto algoritmo1 princesa1) 3)
-(= (valor_objeto algoritmo1 bruja1) 1)
-(= (valor_objeto algoritmo1 principe1) 5)
-(= (valor_objeto algoritmo1 profesor1) 10)
-(= (valor_objeto oro1 dicaprio1) 5)
-(= (valor_objeto oro1 princesa1) 4)
-(= (valor_objeto oro1 bruja1) 3)
-(= (valor_objeto oro1 principe1) 10)
-(= (valor_objeto oro1 profesor1) 1)
+(= (valor_objeto oscar1 dicaprio1) 10)
+(= (valor_objeto oscar1 princesa1) 5)
+(= (valor_objeto oscar1 bruja1) 4)
+(= (valor_objeto oscar1 principe1) 1)
+(= (valor_objeto oscar1 profesor1) 3)
+(= (valor_objeto manzana2 dicaprio1) 3)
+(= (valor_objeto manzana2 princesa1) 1)
+(= (valor_objeto manzana2 bruja1) 10)
+(= (valor_objeto manzana2 principe1) 4)
+(= (valor_objeto manzana2 profesor1) 5)
+(= (valor_objeto oscar2 dicaprio1) 10)
+(= (valor_objeto oscar2 princesa1) 5)
+(= (valor_objeto oscar2 bruja1) 4)
+(= (valor_objeto oscar2 principe1) 1)
+(= (valor_objeto oscar2 profesor1) 3)
+(= (valor_objeto oscar3 dicaprio1) 10)
+(= (valor_objeto oscar3 princesa1) 5)
+(= (valor_objeto oscar3 bruja1) 4)
+(= (valor_objeto oscar3 principe1) 1)
+(= (valor_objeto oscar3 profesor1) 3)
 )
 (:goal (AND
 (= (puntos_totales jugador1) (puntos_minimos))

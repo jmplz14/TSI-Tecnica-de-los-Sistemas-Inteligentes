@@ -14,10 +14,11 @@ def matrizPuntos(per,obj):
     objetos = ["oscar","rosa","manzana","algoritmo","oro"]
     personajes = ["dicaprio","princesa","bruja","profesor","principe"]
     valores_objetos = ""
-    for i in range(int(len(per)/2)):
-        for j in range(int(len(obj)/2)):
+    for i in range(int(len(obj)/2)):
+        for j in range(int(len(per)/2)):
             valor_i = objetos.index(obj[i*2 + 1])
             valor_j = personajes.index(per[j*2 + 1])
+            
             valores_objetos += "(= (valor_objeto " + str(obj[i*2]) + " " + (per[j*2]) + ") " + str(matriz[valor_i][valor_j]) + ")\n"
             
     return valores_objetos    
@@ -51,7 +52,7 @@ def devolverCaracteristicas(nuevo,pos,tipo):
         posiciones += "(tipo_terreno " + pos + " " + tipo + ")\n"
     return personajes_objetos, posiciones
 
-f = open("ejer3.txt", "r")
+f = open("ejer4.txt", "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
@@ -168,7 +169,7 @@ for x in f:
     #for i in nuevo.split(";"):tipo_terreno
      #   print(i)
 
-f = open("ProblemaEjer3.pddl", "w")
+f = open("ProblemaEjer4.pddl", "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")

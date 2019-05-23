@@ -1,4 +1,4 @@
-(define (domain DEjer3); girar izquierda
+(define (domain DEjer4); girar izquierda
   (:requirements :strips :equality :typing)
   (:types  jugador - tipos
 				orientacion
