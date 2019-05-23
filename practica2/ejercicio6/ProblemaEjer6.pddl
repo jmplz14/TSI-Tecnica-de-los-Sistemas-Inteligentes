@@ -9,7 +9,9 @@ zapatilla1 - zapatilla
 rosa1 - rosa
 oscar1 - oscar
 bikini1 - bikini
+manzana3 - manzana
 princesa1 - princesa
+manzana2 - manzana
 manzana1 - manzana
 algoritmo1 - algoritmo
 oro1 - oro
@@ -44,8 +46,10 @@ norte este sur oeste - orientacion
 (tipo_terreno z9 bosque)
 (posicion_objeto bikini1 z9)
 (tipo_terreno z10 bosque)
+(posicion_objeto manzana3 z10)
 (posicion_personaje princesa1 z11)
 (tipo_terreno z11 bosque)
+(posicion_objeto manzana2 z13)
 (tipo_terreno z13 precipicio)
 (posicion_objeto manzana1 z12)
 (tipo_terreno z12 arena)
@@ -175,10 +179,10 @@ norte este sur oeste - orientacion
 (= (coste z23 z24) 1)
 (= (coste z24 z23) 1)
 (= (coste_total) 0)
-(= (puntos_minimos) 10)
-(= (bolsillo bruja1) 1)
-(= (bolsillo princesa1) 1)
+(= (puntos_minimos) 30)
+(= (bolsillo bruja1) 2)
 (= (bolsillo dicaprio1) 1)
+(= (bolsillo princesa1) 1)
 (= (bolsillo principe1) 1)
 (= (bolsillo profesor1) 1)
 (= (valor_objeto rosa1 dicaprio1) 1)
@@ -191,6 +195,16 @@ norte este sur oeste - orientacion
 (= (valor_objeto oscar1 bruja1) 4)
 (= (valor_objeto oscar1 principe1) 1)
 (= (valor_objeto oscar1 profesor1) 3)
+(= (valor_objeto manzana3 dicaprio1) 3)
+(= (valor_objeto manzana3 princesa1) 1)
+(= (valor_objeto manzana3 bruja1) 10)
+(= (valor_objeto manzana3 principe1) 4)
+(= (valor_objeto manzana3 profesor1) 5)
+(= (valor_objeto manzana2 dicaprio1) 3)
+(= (valor_objeto manzana2 princesa1) 1)
+(= (valor_objeto manzana2 bruja1) 10)
+(= (valor_objeto manzana2 principe1) 4)
+(= (valor_objeto manzana2 profesor1) 5)
 (= (valor_objeto manzana1 dicaprio1) 3)
 (= (valor_objeto manzana1 princesa1) 1)
 (= (valor_objeto manzana1 bruja1) 10)
@@ -207,8 +221,8 @@ norte este sur oeste - orientacion
 (= (valor_objeto oro1 principe1) 10)
 (= (valor_objeto oro1 profesor1) 1)
 (=(puntos_conjuntos) 0)
-(= (puntos_jugador_objetivo jugador1) 5)
-(= (puntos_jugador_objetivo jugador2) 5)
+(= (puntos_jugador_objetivo jugador1) 10)
+(= (puntos_jugador_objetivo jugador2) 10)
 )
 (:goal (AND
 (> (puntos_conjuntos) (puntos_minimos))

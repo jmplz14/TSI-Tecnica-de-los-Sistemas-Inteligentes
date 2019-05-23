@@ -39,7 +39,7 @@ rulecolor=\color{black}}
 \section{Ejercicio 1}
 \subsection{Representación del mundo}
 
-En este caso he optado una representación muy sencilla basada en los siguientes tipos.:
+He optado una representación muy sencilla basada en los siguientes tipos.:
 \begin{enumerate}
 \item{Zonas: } En este caso representan las partes de mi mapa. Y tienen la siguiente representación.
 $$
@@ -50,7 +50,7 @@ $$
 norte\ sur\ este\ oeste\ -\ orientacion
 $$
 
-\item{Objetos y Personajes: } En este caso se tendrá una linea por cada objeto o personaje en el fichero del problema que tendrá el nombre del objeto y el tipo. Como los siguientes ejemplos:
+\item{Objetos y Personajes: } Se tendrá una linea por cada objeto o personaje en el fichero del problema que tendrá el nombre del objeto y el tipo. Como los siguientes ejemplos:
 $$
 princesa1\ -\ princesa
 $$
@@ -69,7 +69,7 @@ $$
 oscar\ manzana\ rosa\ algoritmo\ oro\ -\ objeto
 $$
 
-\item{Jugador: } En este caso tendremos un tipo especifico para los jugadores como mostrare a continuación:
+\item{Jugador: } Tendremos un tipo especifico para los jugadores como mostrare a continuación:
 $$
 jugador1\ -\ jugador
 $$
@@ -106,10 +106,10 @@ $$
 $$
 
 \subsection{Funcionalidad}
-En este caso se nos pide que: 
+Se nos pide que: 
 \begin{enumerate}
 \item{Girar a izquierda:}
-En este caso tendremos que tener en cuenta la orientación del jugador. De forma que si esta orientado al norte y gira a la izquierda su orientación cambiaría a oeste. Por tanto nos hará falta unicamente el parámetro ?player que sera de tipo jugador y mediante when y el registro de orientación del jugador se cambiara la orientación de este. Un ejemplo seria el siguiente.
+Tendremos que tener en cuenta la orientación del jugador. De forma que si esta orientado al norte y gira a la izquierda su orientación cambiaría a oeste. Por tanto nos hará falta unicamente el parámetro ?player que sera de tipo jugador y mediante when y el registro de orientación del jugador se cambiara la orientación de este. Un ejemplo seria el siguiente.
 \newline
 
 Tenemos el ?player mirando al norte. Para girarlo necesitaríamos un when que si se cumple que esta mirando al norte borre esa orientación y escriba la orientación al oeste para ?player. Este when se tendría que realizar con las 4 posibles orientaciones.
@@ -147,7 +147,7 @@ Tenemos el ?player mirando al norte. Para girarlo necesitaríamos un when que si
 \end{lstlisting}
 
 
-\item{Girar a derecha:} En este caso seria igual que el ejemplo anterior unicamente que si esta orientado por ejemplo al norte pasaría al este. La función girar a la derecha es prácticamente igual unicamente cambiando eso. Por esto no la pondré en la memoria.
+\item{Girar a derecha:} Seria igual que el ejemplo anterior unicamente que si esta orientado por ejemplo al norte pasaría al este. La función girar a la derecha es prácticamente igual unicamente cambiando eso. Por esto no la pondré en la memoria.
 
 \item{Coger objeto:} A la hora de coger un objeto hay que tener en cuenta que el jugador que lo coja y el objeto tienen que estar en la misma zona. Ademas tendremos que eliminar de la zona dicho objeto para que no pueda cogerse mas veces.
 Para esto como parámetros necesitaremos como hemos dicho el jugador, el objeto y la zona en la que se situan. 
@@ -177,10 +177,10 @@ Con esto ya se puede realizar la opción de coger objeto.
 )
 \end{lstlisting}
 
-En este caso como el ejercicio no indica en ningún momento que no se puedan coger mas de un objeto a la vez no he limitado esto. Aunque mas adelante esto si se especifica en otro ejercicio.
+Como el ejercicio no indica en ningún momento que no se puedan coger mas de un objeto a la vez no he limitado esto. Aunque mas adelante esto si se especifica en otro ejercicio.
 
 \item{Dejar objeto:} La mecánica de dejar objeto es muy parecida a la anterior. Tiene los mismos parámetros. Puesto que nos hace falta saber el ?player que soltara el objeto, el objeto que soltara y la zona en la que sera soltado.
-En este caso las precondiciones tiene que cumplir que el jugador tenga el objeto y que esta en la zona donde vamos a soltarlo.
+Las precondiciones tiene que cumplir que el jugador tenga el objeto y que esta en la zona donde vamos a soltarlo.
 
 \begin{lstlisting}
 :precondition(and
@@ -198,7 +198,7 @@ A la hora de soltarlo tendremos que hacer justo lo contrario que en el caso de c
 )
 \end{lstlisting}
 
-\item{Moverse entre zonas:} En este caso para movernos entre zonas se tiene que cumplir que estemos mirando a la orientación correcta. Por ejemplo si estamos en z1 y esta conectada con z2 por el norte. Solo podremos pasar de z1 a z2 si el jugador esta orientado al norte. 
+\item{Moverse entre zonas:} Para movernos entre zonas se tiene que cumplir que estemos mirando a la orientación correcta. Por ejemplo si estamos en z1 y esta conectada con z2 por el norte. Solo podremos pasar de z1 a z2 si el jugador esta orientado al norte. 
 Para esto necesitaremos como parámetros la zona de destino y origen, la orientacion del jugador y el propio jugador.
 
 \begin{lstlisting}
@@ -276,7 +276,7 @@ $$
 (=\ (coste\ z3\ z4)\ 1)
 $$
 
-Esto identifica las dos zonas y el coste es el 3 parámetro. En este caso pasar de la zona 4 a la zona 3 tendría un coste de 1. Uso la doble direccionalidad también para ahorrarme comprobaciones al mirar los costes.
+Esto identifica las dos zonas y el coste es el 3 parámetro. Pasar de la zona 4 a la zona 3 tendría un coste de 1. Uso la doble direccionalidad también para ahorrarme comprobaciones al mirar los costes.
 
 También tendremos que añadir un nuevo predicado de tipo función para llevar la cuenta del coste total. 
 
@@ -285,7 +285,7 @@ $$
 $$
 
 \subsection{Funcionalidad}
-En este caso los cambios que se realizan son muy pequeños. Tenemos que ir sumando el coste del arco a la hora de movernos con la función para moverse. Por tanto solo tendríamos que añadir a esta función la linea que nos incremente el coste total. La funcino quedaria de la siguiente manera. 
+Los cambios que se realizan son muy pequeños. Tenemos que ir sumando el coste del arco a la hora de movernos con la función para moverse. Por tanto solo tendríamos que añadir a esta función la linea que nos incremente el coste total. La función quedaría de la siguiente manera. 
 
 \begin{lstlisting}
 :effect(and 
@@ -328,7 +328,7 @@ En caso hemos colocado un personaje de cada tipo, un jugador y un objeto de cada
 	\end{center}
 \end{table}
 
-En este caso obligue mediante el goal que a cierto personaje le diera cierto objeto. Hice esto porque sino tardo mucho en ejecutar al tener muchas opciones y optimizar con -O
+Obligue mediante el goal que a cierto personaje le diera cierto objeto. Hice esto porque sino tardo mucho en ejecutar al tener muchas opciones y optimizar con -O
 \newpage
 \begin{lstlisting}
 (:goal (AND
@@ -381,7 +381,7 @@ Los pesos de los arcos son los siguientes:
 		\end{tabular}
 	\end{center}
 \end{table}
- 
+ Los pesos utilizados en este problema son los usados para todos los demas. 
 \section{Ejercicio 3}
 \subsection{Representación del mundo}
 Se añade a la zona una nueva características que representara el tipo de terreno. Para representar el tipo de terreno de una zona se necesitara un nuevo predicado. El predicado contendrá la zona y el tipo de terreno. 
@@ -395,7 +395,7 @@ $$
 piedra\ agua\ bosque\ arena\ precipicio\ -\ suelos
 $$
 
-Se añaden dos nuevos tipos de objetos(bikini y zapatillas). En este caso los objetos se registran como en los casos anterior. 
+Se añaden dos nuevos tipos de objetos(bikini y zapatillas). Los objetos se registran como en los casos anterior. 
 $$
 bikini1\ -\ bikini
 $$
@@ -403,7 +403,7 @@ $$
 zapatillas1\ -\ zapatillas
 $$
 
-En este caso tendremos que modificar también el tipo de objetos explicado anteriormente para incluir los nuevos. Quedando de la siguiente manera.
+Tendremos que modificar también el tipo de objetos explicado anteriormente para incluir los nuevos. Quedando de la siguiente manera.
 $$
 oscar\ manzana\ rosa\ algoritmo\ oro\ bikini\ zapatilla\ -\ objeto
 $$
@@ -425,7 +425,7 @@ Con esto ya tenemos toda la representación del problema realizada.
 \subsection{Funcionalidad}
 Empecemos por la parte de la mochila. 
 
-En este caso la mochila afecta a funciones anteriores. Vamos a analizarlas una a una.
+La mochila afecta a funciones anteriores. Vamos a analizarlas una a una.
 Las funciones anteriores que tendremos que modificar son las siguientes.
 
 \begin{enumerate}
@@ -451,7 +451,7 @@ Las funciones anteriores que tendremos que modificar son las siguientes.
 	\end{lstlisting}
 	Con estas pequeñas modificaciones la acción coger objeto ya esta preparada.
 	
-	\item{Dejar objeto:} La modificación en este caso es muy parecida a lo explicado en coger objeto. En este caso se tendrá que ver que tenemos un objeto en la mano. Esta parte no cambia el cambio viene en el apartado de effect donde añadiremos la regla (jugador\_sin\_objeto ?player) que indicara que el jugador a soltado el objeto.
+	\item{Dejar objeto:} La modificación es muy parecida a lo explicado en coger objeto. Se tendrá que ver que tenemos un objeto en la mano. Esta parte no cambia el cambio viene en el apartado de effect donde añadiremos la regla (jugador\_sin\_objeto ?player) que indicara que el jugador a soltado el objeto.
 	
 	
 	
@@ -469,7 +469,7 @@ Las funciones anteriores que tendremos que modificar son las siguientes.
 	
 
 	\end{lstlisting}
-\item{Entregar objeto:} En este caso tendremos que tener en cuenta en el apartado de effects que el jugador solo puede entregar objetos que tiene en la mano y por tanto una vez entregado se quedara sin el objeto y con las manos libres. Para esto solo modificaremos la parte de :effect quedando las precondition como las teníamos anteriormente. En la parte de precondition tendremos que añadir el predicado jugador\_sin\_objetos para indicar que el jugador tiene las manos libres.
+\item{Entregar objeto:} Tendremos que tener en cuenta en el apartado de effects que el jugador solo puede entregar objetos que tiene en la mano y por tanto una vez entregado se quedara sin el objeto y con las manos libres. Para esto solo modificaremos la parte de :effect quedando las precondition como las teníamos anteriormente. En la parte de precondition tendremos que añadir el predicado jugador\_sin\_objetos para indicar que el jugador tiene las manos libres.
 
 
 	\begin{lstlisting}
@@ -518,7 +518,7 @@ Una vez se cumplan las precondiciones tendremos que añadir que el jugador no ti
 \begin{lstlisting}
 :parameters (?player - jugador ?objeto - objeto ?zona - zona)
 \end{lstlisting}
-Las precondiciones en este caso son que el jugador se encuentre en dicha zona y que tenga un objeto en la mochila.
+Las precondiciones son que el jugador se encuentre en dicha zona y que tenga un objeto en la mochila.
 \begin{lstlisting}
 :precondition(and			
 	(posicion_jugador ?player ?zona)
@@ -554,7 +554,7 @@ La segunda parte de este ejercicio sera las restricciones dadas por los tipos de
 )
 
 	\end{lstlisting}
-Las precondiciones utilizadas en este caso son muy parecidas a las del ejercicio1 añadiendo un predicado para que el jugador tenga las zapatillas en la mano o en la mochila.
+Las precondiciones utilizadas son muy parecidas a las del ejercicio1 añadiendo un predicado para que el jugador tenga las zapatillas en la mano o en la mochila.
 	\begin{lstlisting}
 :precondition (and 
 (orientacion_jugador ?player ?cardinal)
@@ -578,7 +578,7 @@ Las precondiciones utilizadas en este caso son muy parecidas a las del ejercicio
 )	
 	\end{lstlisting}
 \newpage	
-\item{Agua:} En este caso sera prácticamente igual que en el caso anterior cambiando que el objeto sea de tipo bikini y que la zona sea de agua. Como se muestra en el siguiente código.
+\item{Agua:} Sera prácticamente igual que en el caso anterior cambiando que el objeto sea de tipo bikini y que la zona sea de agua. Como se muestra en el siguiente código.
 
 \begin{lstlisting}
 (:action moverseOrientadoAgua
@@ -619,9 +619,65 @@ Depures la parte effects es exactamente igual que en el movimiento en bosque y a
 
 \end{enumerate}
 \newpage
+\subsection{Ejemplo utilizado}
+El mapa que usare en todos los ejercicios es este. Los colores representan los siguientes terrenos:
+\begin{enumerate}
+	\item{Verde:} Bosque
+	\item{Rojo:} Precipicio
+	\item{Azul:} Agua
+	\item{Amarillo:} Arena
+	\item{Gris:} Piedra
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../../../Escritorio/mapaterrenos}
+	\caption{}
+	\label{fig:mapaterrenos}
+\end{figure}
+
+
+
+En caso hemos colocado un personaje de cada tipo, un jugador y un objeto de cada tipo.
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Tipo & Nombre & Posición \\
+			\hline \hline
+			oro & oro1 & 15 \\ \hline
+			oscar & oscar1 & 8\\ \hline
+			rosa & rosa1 & 7\\ \hline
+			algoritmo & algoritmo1 & 14 \\ \hline
+			manzana & manzana1 & 12\\ \hline
+			bikini & bikini1 & 9\\ \hline
+			zapatilla & zapatilla & 6\\ \hline 
+			princesa & princesa1 & 11 \\ \hline
+			principe & principe1 & 18 \\ \hline
+			profesor & profesor1 & 24  \\ \hline
+			bruja & bruja1 & 16 \\ \hline
+			dicaprio  & dicaprio1& 5 \\ \hline
+			jugador & jugador1 & 1 \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+
+El goal que utilizo es:
+\begin{lstlisting}
+(:goal (AND
+	(personaje_tiene princesa1 rosa1)
+	(personaje_tiene principe1 oro1)
+	(personaje_tiene profesor1 algoritmo1)
+	(personaje_tiene bruja1 manzana1)
+	(personaje_tiene dicaprio1 oscar1)
+)))
+\end{lstlisting}
 \section{Ejercicio 4}
 \subsection{Representación del mundo}
-Para representar los valores de la tabla dada he añadido un predicado de tipo funcion con la siguiente estructura.
+Para representar los valores de la tabla dada he añadido un predicado de tipo función con la siguiente estructura.
+
 
 $$
 (=\ (valor\_objeto\ rosa1\ princesa1)\ 10)
@@ -642,8 +698,8 @@ $$
 
 
 \subsection{Funcionalidad}
-En este caso la funcionalidad a cambiar se encuentra en la acción que entrega los objetos a el jugador.
-En este caso solo hay que añadir una nueva linea en la parte de efectos para que incremente los puntos totales respecto al objeto entregado. El effect quedaría de la siguiente manera.
+La funcionalidad a cambiar se encuentra en la acción que entrega los objetos a el jugador.
+Solo hay que añadir una nueva linea en la parte de efectos para que incremente los puntos totales respecto al objeto entregado. El effect quedaría de la siguiente manera.
 	\begin{lstlisting}
 :effect(and 
 	(not (jugador_tiene ?player ?objeto))
@@ -654,16 +710,64 @@ En este caso solo hay que añadir una nueva linea en la parte de efectos para qu
 )
 	\end{lstlisting}
 	
-En este caso el goal tendría que cumplir que la puntuación total sea igual que la puntuación pasada como mínima.
+El goal tendría que cumplir que la puntuación total sea mayor que la puntuación pasada como mínima.
 
 	
 	\begin{lstlisting}
-(:goal (AND(= (puntos_totales jugador1) (puntos_minimos))))
+(:goal (AND(> (puntos_totales jugador1) (puntos_minimos))))
 	\end{lstlisting}
-\newpage	
+\newpage
+
+\subsection{Ejemplo utilizado}
+El mapa que usare en todos los ejercicios es este. Los colores representan los siguientes terrenos:
+\begin{enumerate}
+	\item{Verde:} Bosque
+	\item{Rojo:} Precipicio
+	\item{Azul:} Agua
+	\item{Amarillo:} Arena
+	\item{Gris:} Piedra
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../../../Escritorio/mapaterrenos}
+\end{figure}
+
+En este caso he puesto solo manzanas y oscar como indica el enunciado. El problema se resolvió con 50 puntos totales.
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Tipo & Nombre & Posición \\
+			\hline \hline
+			manzana & manzana1& 12 \\ \hline
+			manzana & manzana2 & 15\\ \hline
+			manzana & manzana3 & 7\\ \hline
+			manzana & manzana4 & 20 \\ \hline
+			oscar & oscar1 & 8\\ \hline
+			oscar & oscar2 & 17\\ \hline
+			oscar & oscar3 & 25\\ \hline
+			oscar & oscar4 & 14\\ \hline
+			bikini & bikini1 & 9\\ \hline
+			zapatilla & zapatilla & 6\\ \hline 
+			princesa & princesa1 & 11 \\ \hline
+			principe & principe1 & 18 \\ \hline
+			profesor & profesor1 & 24  \\ \hline
+			bruja & bruja1 & 16 \\ \hline
+			dicaprio  & dicaprio1& 5 \\ \hline
+			jugador & jugador1 & 1 \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+Se realizo la ejecución sin -O
+	
 \section{Ejercicio 5}
 \subsection{Representación del mundo}
-En este caso se añade un nuevo predicado de tipo función que tendrá el numero de objetos que acepta un personaje. El predicado tendría la siguiente estructura.
+Se añade un nuevo predicado de tipo función que tendrá el numero de objetos que acepta un personaje. El predicado tendría la siguiente estructura.
 
 $$
 (= (bolsillo princesa1) 5)
@@ -671,7 +775,7 @@ $$
 Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que podría tener. No necesito tener ningún predicado mas porque en la parte de funcionalidad voy restando a este.
 
 \subsection{Funcionalidad}
-	En este caso solo se modificara la acción entregar objeto. En esta acción se modificara la parte de precondition y la parte de effect. 
+	Solo se modificara la acción entregar objeto. En esta acción se modificara la parte de precondition y la parte de effect. 
 	En precondition tendremos que comprobar que el numero del predicado (bolsillo ?personaje) sea mayor que 0. Esto nos indicara que aun puede tener mas objetos. Si se cumple esto entregaremos el objeto al personaje y decrementaremos el bolsillo en 1. Este decremento se hará en la parte de effects.
 	\begin{lstlisting}
 :precondition(and
@@ -690,6 +794,51 @@ Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que
 	
 )
 	\end{lstlisting}
+
+
+\subsection{Ejemplo utilizado}
+El mapa que usare en todos los ejercicios es este. Los colores representan los siguientes terrenos:
+\begin{enumerate}
+	\item{Verde:} Bosque
+	\item{Rojo:} Precipicio
+	\item{Azul:} Agua
+	\item{Amarillo:} Arena
+	\item{Gris:} Piedra
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../../../Escritorio/mapaterrenos}
+\end{figure}
+
+Le he dado un valor de bolsillo a la bruja1 de 4 y a la princesa1 de 5
+
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Tipo & Nombre & Posición \\
+			\hline \hline
+			oro & oro1 & 15 \\ \hline
+			oscar & oscar1 & 8\\ \hline
+			rosa & rosa1 & 7\\ \hline
+			algoritmo & algoritmo1 & 14 \\ \hline
+			manzana & manzana1 & 12\\ \hline
+			bikini & bikini1 & 9\\ \hline
+			zapatilla & zapatilla & 6\\ \hline 
+			princesa & princesa1 & 11 \\ \hline
+			principe & principe1 & 18 \\ \hline
+			profesor & profesor1 & 24  \\ \hline
+			bruja & bruja1 & 16 \\ \hline
+			dicaprio  & dicaprio1& 5 \\ \hline
+			jugador & jugador1 & 1 \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+
+La ejecución la he realizado sin -O
 	\section{Ejercicio 6}
 	\subsection{Representación del mundo}
 	Se introducen 3 nuevo tipos de predicados. El primero seria el que marca los putos que hay que conseguir entre varios personajes.
@@ -699,7 +848,7 @@ Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que
 	$$
 	
 	El valor numérico indicaría el numero de puntos mínimos a conseguir.
-	Después tendremos que tener otro que usaremos como contador de puntos alcanzados. En este todos los personajes añadirán los puntos que van consiguiendo al entregar un objeto
+	Después tendremos que tener otro que usaremos como contador de puntos alcanzados. Todos los personajes añadirán los puntos que van consiguiendo al entregar un objeto
 	$$
 	(=\ (puntos\_conjuntos)\ 0)
 	$$
@@ -716,7 +865,7 @@ Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que
 	(=\ (puntos\_jugador\_objetivo\ jugador2)\ 5)
 	$$
 	
-	El goal en este caso tiene que cumplir varios requisitos. Que todos los jugadores superen su limite de puntos y que en conjunten superen también el mínimo conjunto. Seria el siguiente:
+	El goal tiene que cumplir varios requisitos. Que todos los jugadores superen su limite de puntos y que en conjunten superen también el mínimo conjunto. Seria el siguiente:
 \begin{lstlisting}
 (:goal (AND
 	(> (puntos_conjuntos) (puntos_minimos))
@@ -729,7 +878,7 @@ Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que
 	
 	
 	\subsection{Funcionalidad}
-	En este caso como en el ejercicio anterior lo único que he tenido que modificar es la parte de effects de la acction que entrega objetos a los personajes. El único cambio en mi caso es añadir un incremento que aumente el contador compartido.
+	Como en el ejercicio anterior lo único que he tenido que modificar es la parte de effects de la acction que entrega objetos a los personajes. El único cambio en mi caso es añadir un incremento que aumente el contador compartido.
 	
 	
 	\begin{lstlisting}
@@ -744,7 +893,51 @@ Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que
 
 )
 	\end{lstlisting}
-	
+
+\subsection{Ejemplo utilizado}
+El mapa que usare en todos los ejercicios es este. Los colores representan los siguientes terrenos:
+\begin{enumerate}
+	\item{Verde:} Bosque
+	\item{Rojo:} Precipicio
+	\item{Azul:} Agua
+	\item{Amarillo:} Arena
+	\item{Gris:} Piedra
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../../../Escritorio/mapaterrenos}
+\end{figure}
+
+Le he dado un valor de bolsillo a la bruja1 de 4 y a la princesa1 de 5
+
+He colocado un minimo conjunto de 30 y que cada personaje alcance como minimo 10
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Tipo & Nombre & Posición \\
+			\hline \hline
+			oro & oro1 & 15 \\ \hline
+			oscar & oscar1 & 8\\ \hline
+			rosa & rosa1 & 7\\ \hline
+			algoritmo & algoritmo1 & 14 \\ \hline
+			manzana & manzana1 & 12\\ \hline
+			bikini & bikini1 & 9\\ \hline
+			zapatilla & zapatilla & 6\\ \hline 
+			princesa & princesa1 & 11 \\ \hline
+			principe & principe1 & 18 \\ \hline
+			profesor & profesor1 & 24  \\ \hline
+			bruja & bruja1 & 16 \\ \hline
+			dicaprio  & dicaprio1& 5 \\ \hline
+			jugador & jugador1 & 1 \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+
+La ejecución la he realizado sin -O
 	
 
 

@@ -2,7 +2,7 @@ Dominio:DEjer5
 Problema:PEjer5
 numero de zonas:25
 puntos_totales:10
-bolsillo:[bruja1:1 princesa1:5]
+bolsillo:[bruja1:4 princesa1:5]
 V->z1[jugador1-jugador][arena]=1=z2[][arena]=3=z3[][piedra]
 V->z3[][]=1=z4[][piedra]=4=z5[][piedra]
 V->z5[dicaprio1-dicaprio][]=1=z6[zapatilla1-zapatilla][arena]

@@ -10,11 +10,12 @@ oscar1 - oscar
 bikini1 - bikini
 princesa1 - princesa
 manzana1 - manzana
-oscar1 - oscar
+oscar4 - oscar
 manzana2 - manzana
 bruja1 - bruja
 principe1 - principe
 oscar2 - oscar
+manzana4 - manzana
 oscar3 - oscar
 profesor1 - profesor
 norte este sur oeste - orientacion
@@ -45,7 +46,7 @@ norte este sur oeste - orientacion
 (tipo_terreno z13 precipicio)
 (posicion_objeto manzana1 z12)
 (tipo_terreno z12 arena)
-(posicion_objeto oscar1 z14)
+(posicion_objeto oscar4 z14)
 (tipo_terreno z14 piedra)
 (posicion_objeto manzana2 z15)
 (tipo_terreno z15 arena)
@@ -58,6 +59,7 @@ norte este sur oeste - orientacion
 (tipo_terreno z19 agua)
 (tipo_terreno z21 precipicio)
 (tipo_terreno z20 agua)
+(posicion_objeto manzana4 z20)
 (tipo_terreno z22 piedra)
 (tipo_terreno z23 piedra)
 (tipo_terreno z25 piedra)
@@ -189,11 +191,11 @@ norte este sur oeste - orientacion
 (= (valor_objeto manzana1 bruja1) 10)
 (= (valor_objeto manzana1 principe1) 4)
 (= (valor_objeto manzana1 profesor1) 5)
-(= (valor_objeto oscar1 dicaprio1) 10)
-(= (valor_objeto oscar1 princesa1) 5)
-(= (valor_objeto oscar1 bruja1) 4)
-(= (valor_objeto oscar1 principe1) 1)
-(= (valor_objeto oscar1 profesor1) 3)
+(= (valor_objeto oscar4 dicaprio1) 10)
+(= (valor_objeto oscar4 princesa1) 5)
+(= (valor_objeto oscar4 bruja1) 4)
+(= (valor_objeto oscar4 principe1) 1)
+(= (valor_objeto oscar4 profesor1) 3)
 (= (valor_objeto manzana2 dicaprio1) 3)
 (= (valor_objeto manzana2 princesa1) 1)
 (= (valor_objeto manzana2 bruja1) 10)
@@ -204,6 +206,11 @@ norte este sur oeste - orientacion
 (= (valor_objeto oscar2 bruja1) 4)
 (= (valor_objeto oscar2 principe1) 1)
 (= (valor_objeto oscar2 profesor1) 3)
+(= (valor_objeto manzana4 dicaprio1) 3)
+(= (valor_objeto manzana4 princesa1) 1)
+(= (valor_objeto manzana4 bruja1) 10)
+(= (valor_objeto manzana4 principe1) 4)
+(= (valor_objeto manzana4 profesor1) 5)
 (= (valor_objeto oscar3 dicaprio1) 10)
 (= (valor_objeto oscar3 princesa1) 5)
 (= (valor_objeto oscar3 bruja1) 4)
@@ -211,5 +218,5 @@ norte este sur oeste - orientacion
 (= (valor_objeto oscar3 profesor1) 3)
 )
 (:goal (AND
-(= (puntos_totales jugador1) (puntos_minimos))
+(> (puntos_totales jugador1) (puntos_minimos))
 )))

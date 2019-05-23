@@ -5,6 +5,8 @@ Created on Tue May 21 19:01:27 2019
 
 @author: jose
 """
+import sys
+
 def matrizPuntos(per,obj):
     matriz = [[10,5,4,3,1],
               [1,10,5,4,3],
@@ -52,7 +54,7 @@ def devolverCaracteristicas(nuevo,pos,tipo):
         posiciones += "(tipo_terreno " + pos + " " + tipo + ")\n"
     return personajes_objetos, posiciones
 
-f = open("ejer4.txt", "r")
+f = open(sys.argv[1], "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
@@ -169,7 +171,7 @@ for x in f:
     #for i in nuevo.split(";"):tipo_terreno
      #   print(i)
 
-f = open("ProblemaEjer4.pddl", "w")
+f = open(sys.argv[2], "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")
@@ -192,7 +194,7 @@ f.write(matrizPuntos(personajes_introducidos,objetos_introducidos))
 f.write(")\n")
 
 f.write("(:goal (AND\n")
-f.write("(= (puntos_totales jugador1) (puntos_minimos))\n")
+f.write("(> (puntos_totales jugador1) (puntos_minimos))\n")
 f.write(")))\n")
 #f.write("(:metric minimize (coste_total)))")
 f.close()

@@ -170,7 +170,7 @@ norte este sur oeste - orientacion
 (= (coste z24 z23) 1)
 (= (coste_total) 0)
 (= (puntos_minimos) 10)
-(= (bolsillo bruja1) 1)
+(= (bolsillo bruja1) 4)
 (= (bolsillo princesa1) 5)
 (= (bolsillo dicaprio1) 1)
 (= (bolsillo principe1) 1)

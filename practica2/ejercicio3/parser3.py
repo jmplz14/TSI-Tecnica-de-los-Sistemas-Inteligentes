@@ -5,6 +5,7 @@ Created on Tue May 21 19:01:27 2019
 
 @author: jose
 """
+import sys
 def devolverCaracteristicas(nuevo,pos,tipo):
     personajes_objetos = ""
     posiciones = ""
@@ -25,7 +26,7 @@ def devolverCaracteristicas(nuevo,pos,tipo):
         posiciones += "(tipo_terreno " + pos + " " + tipo + ")\n"
     return personajes_objetos, posiciones
     
-f = open("ejer3.txt", "r")
+f = open(sys.argv[1], "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
@@ -139,7 +140,7 @@ for x in f:
     #for i in nuevo.split(";"):tipo_terreno
      #   print(i)
 
-f = open("ProblemaEjer3.pddl", "w")
+f = open(sys.argv[2], "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")
@@ -159,11 +160,11 @@ f.write("(= (coste_total) 0)\n")
 f.write(")\n")
 
 f.write("(:goal (AND\n")
-f.write(";(personaje_tiene princesa1 rosa1)\n")
-f.write(";(personaje_tiene principe1 oro1)\n")
+f.write("(personaje_tiene princesa1 rosa1)\n")
+f.write("(personaje_tiene principe1 oro1)\n")
 f.write("(personaje_tiene profesor1 algoritmo1)\n")
-f.write(";(personaje_tiene bruja1 manzana1)\n")
-f.write(";(personaje_tiene dicaprio1 oscar1)\n")
+f.write("(personaje_tiene bruja1 manzana1)\n")
+f.write("(personaje_tiene dicaprio1 oscar1)\n")
 
 f.write(")))\n")
 #f.write("(:metric minimize (coste_total)))")

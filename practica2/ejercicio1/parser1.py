@@ -5,8 +5,9 @@ Created on Tue May 21 19:01:27 2019
 
 @author: jose
 """
+import sys
 
-f = open("ejer1.txt", "r")
+f = open(sys.argv[1], "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
@@ -94,7 +95,7 @@ for x in f:
     #for i in nuevo.split(";"):
      #   print(i)
 
-f = open("ProblemaEjer1.pddl", "w")
+f = open(sys.argv[2], "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")

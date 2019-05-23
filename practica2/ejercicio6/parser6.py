@@ -5,6 +5,7 @@ Created on Tue May 21 19:01:27 2019
 
 @author: jose
 """
+import sys
 def matrizPuntos(per,obj):
     matriz = [[10,5,4,3,1],
               [1,10,5,4,3],
@@ -59,7 +60,7 @@ def devolverCaracteristicas(nuevo,pos,tipo,bols_usado):
         posiciones += "(tipo_terreno " + pos + " " + tipo + ")\n"
     return personajes_objetos, posiciones, bolsillos
 
-f = open("ejer6.txt", "r")
+f = open(sys.argv[1], "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
@@ -207,7 +208,7 @@ for x in f:
     #print(conectado)
     #for i in nuevo.split(";"):tipo_terreno
      #   print(i)
-f = open("ProblemaEjer6.pddl", "w")
+f = open(sys.argv[2], "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")

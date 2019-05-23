@@ -5,6 +5,7 @@ Created on Tue May 21 19:01:27 2019
 
 @author: jose
 """
+import sys
 def devolverCaracteristicas(nuevo,pos):
     personajes_objetos = ""
     posiciones = ""
@@ -22,7 +23,7 @@ def devolverCaracteristicas(nuevo,pos):
             posiciones += "(posicion_objeto " + dividir[0] + " " + pos + ")\n"
     return personajes_objetos, posiciones
     
-f = open("ejer2.txt", "r")
+f = open(sys.argv[1], "r")
 dominio = f.readline()
 problema = f.readline()
 problema = problema.replace("\n","")
@@ -135,7 +136,7 @@ for x in f:
     #for i in nuevo.split(";"):
      #   print(i)
 
-f = open("ProblemaEjer2.pddl", "w")
+f = open(sys.argv[2], "w")
 
 f.write("(define (problem " + problema + ")\n")
 f.write("(:domain " + dominio + ")")
