@@ -490,15 +490,106 @@ Las precondiciones utilizadas en este caso son muy parecidas a las del ejercicio
 
 \end{lstlisting}
 
-\item{Arena y piedra:} Para pasar por este terreno no se necesita ningun tipo de objeto. Por tanto las precondiciones y las parametros son los mismo que en el ejercicio 1 añadiendo unicamente el predicado (tipo\_terreno ?zona\_destino ?terreno) para saber el terreno que tendremos y en los parametros añadimos ?terreno - suelo para obtener el tipo de suelo. 
+\item{Arena y piedra:} Para pasar por este terreno no se necesita ningún tipo de objeto. Por tanto las precondiciones y las parámetros son los mismo que en el ejercicio 1 añadiendo unicamente el predicado (tipo\_terreno ?zona\_destino ?terreno) para saber el terreno que tendremos y en los parámetros añadimos ?terreno - suelo para obtener el tipo de suelo. 
 
-Depues la parte effects es exactamente igual que en el movimiento en bosque y agua, simplemente añadiendo dos when en vez de uno y que uno de ellos se active si el terreno es arena y otro si es roca. 
+Depures la parte effects es exactamente igual que en el movimiento en bosque y agua, simplemente añadiendo dos when en vez de uno y que uno de ellos se active si el terreno es arena y otro si es roca. 
+
+\item{Precipicio:} El jugador no puede pasar por precipicio. Esto se cumple a no tener añadido en ninguno de las tres funciones de movimiento un when que tenga el cuenta el tipo de suelo Precipicio. Por tanto no hay que añadir nada nuevo para esta parte.
 
 \end{enumerate}
+\newpage
+\section{Ejercicio 4}
+\subsection{Representación del mundo}
+Para representar los valores de la tabla dada he añadido un predicado de tipo funcion con la siguiente estructura.
+
+$$
+(=\ (valor\_objeto\ rosa1\ princesa1)\ 10)
+$$
+Donde princesa1 es un personaje y rosa1 es un objeto. seguido de la puntuación que se obtendría al entregarle ese objeto.
+
+También añado un nuevo predicado de tipo función con los puntos que tenemos que conseguir y otro para almacenar los puntos actuales. 
+
+$$
+(=\ (puntos\_minimos)\ 50)
+$$
+
+$$
+(=\ (puntos\_totales\ jugador1)\ 0)
+$$
+
+
+
+
+\subsection{Funcionalidad}
+En este caso la funcionalidad a cambiar se encuentra en la acción que entrega los objetos a el jugador.
+En este caso solo hay que añadir una nueva linea en la parte de efectos para que incremente los puntos totales respecto al objeto entregado. El effect quedaría de la siguiente manera.
+	\begin{lstlisting}
+:effect(and 
+	(not (jugador_tiene ?player ?objeto))
+	(jugador_sin_objeto ?player)
+	(personaje_tiene ?personaje ?objeto)
+	(personaje_tiene_objeto ?personaje)
+	(increase (puntos_totales ?player) (valor_objeto ?objeto ?personaje))
+)
+	\end{lstlisting}
 	
+En este caso el goal tendría que cumplir que la puntuación total sea igual que la puntuación pasada como mínima.
+
+	
+	\begin{lstlisting}
+(:goal (AND(= (puntos_totales jugador1) (puntos_minimos))))
+	\end{lstlisting}
+\newpage	
+\section{Ejercicio 5}
+\subsection{Representación del mundo}
+En este caso se añade un nuevo predicado de tipo función que tendrá el numero de objetos que acepta un personaje. El predicado tendría la siguiente estructura.
+
+$$
+(= (bolsillo princesa1) 5)
+$$
+Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que podría tener. No necesito tener ningún predicado mas porque en la parte de funcionalidad voy restando a este.
+
+\subsection{Funcionalidad}
+	En este caso solo se modificara la acción entregar objeto. En esta acción se modificara la parte de precondition y la parte de effect. 
+	En precondition tendremos que comprobar que el numero del predicado (bolsillo ?personaje) sea mayor que 0. Esto nos indicara que aun puede tener mas objetos. Si se cumple esto entregaremos el objeto al personaje y decrementaremos el bolsillo en 1. Este decremento se hará en la parte de effects.
+	\begin{lstlisting}
+:precondition(and
+	(posicion_jugador ?player ?zona)
+	(posicion_personaje ?personaje ?zona)
+	(jugador_tiene ?player ?objeto)
+	(> (bolsillo ?personaje) 0)
+)
+:effect(and 
+	(not (jugador_tiene ?player ?objeto))
+	(jugador_sin_objeto ?player)
+	(personaje_tiene ?personaje ?objeto)
+	(personaje_tiene_objeto ?personaje)
+	(increase (puntos_totales ?player) (valor_objeto ?objeto ?personaje))
+	(decrease (bolsillo ?personaje) 1)
+	
+)
+	\end{lstlisting}
+	\section{Ejercicio 6}
+	\subsection{Representación del mundo}
+	Se introducen 3 nuevo tipos de predicados. El primero seria el que marca los putos que hay que conseguir entre varios personajes.
+	
+	$$
+	(=\ (puntos_minimos)\ 10)
+	$$
+	
+	El valor numérico indicaría el numero de puntos mínimos a conseguir.
+	Después tendremos que tener otro que usaremos como contador de puntos alcanzados. En este todos los personajes añadirán los puntos que van consiguiendo al entregar un objeto
+	$$
+	(= ())
+	$$
+	\subsection{Funcionalidad}
 	\begin{lstlisting}
 	
 	\end{lstlisting}
+	\begin{lstlisting}
+	
+	\end{lstlisting}
+	
 	
 
 
