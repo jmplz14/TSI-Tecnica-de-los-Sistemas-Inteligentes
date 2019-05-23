@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}Ejercicio 1}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Representaci\IeC {\'o}n del mundo}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Funcionalidad}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}Ejercicio 2}{7}{section.2}
+\contentsline {subsection}{\numberline {2.1}Representaci\IeC {\'o}n del mundo}{7}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Funcionalidad}{7}{subsection.2.2}
+\contentsline {section}{\numberline {3}Ejercicio 3}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Representaci\IeC {\'o}n del mundo}{7}{subsection.3.1}
