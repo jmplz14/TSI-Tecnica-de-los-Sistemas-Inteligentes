@@ -263,11 +263,249 @@ En este caso los cambios que se realizan son muy pequeños. Tenemos que ir suman
 
 \section{Ejercicio 3}
 \subsection{Representación del mundo}
-Se añade a la zona una nueva características que representara el tipo de terreno. Para representar el tipo de terreno de una zona se necesitara un nuevo predizado. El predicado contendrá la zona y el tipo de terreno. 
+Se añade a la zona una nueva características que representara el tipo de terreno. Para representar el tipo de terreno de una zona se necesitara un nuevo predicado. El predicado contendrá la zona y el tipo de terreno. 
+$$
+(tipo\_terreno z5 piedra)
+$$
+
+Al añadirse nuevos terrenos tendremos que crear un nuevo tipo que los contendrá para poder trabajar con ellos. El tipos es el siguiente: 
+
+$$
+piedra\ agua\ bosque\ arena\ precipicio\ -\ suelos
+$$
+
+Se añaden dos nuevos tipos de objetos(bikini y zapatillas). En este caso los objetos se registran como en los casos anterior. 
+$$
+bikini1\ -\ bikini
+$$
+$$
+zapatillas1\ -\ zapatillas
+$$
+
+En este caso tendremos que modificar también el tipo de objetos explicado anteriormente para incluir los nuevos. Quedando de la siguiente manera.
+$$
+oscar\ manzana\ rosa\ algoritmo\ oro\ bikini\ zapatilla\ -\ objeto
+$$
+
+También se añade una mochila al usuario y se limita el numero de objetos que se pueden coger a 1 en las manos y otro en la mochila. Según el enunciado especifica que para meter un objeto en la mochila tiene que tenerlo antes en las manos. A la hora de sacarlo en la mochila no decía nada al respecto. Por lo que yo he añadido un sacar de la mochila que deja el objeto directamente en el suelo. Se limita a 1 el numero de objetos que podemos tener en la mano. 
+
+Para esto he añadido dos nuevos predicados uno para indicar que tiene un objeto en la mochila y otro para indicar que tiene un objeto cogido.
+
+$$
+(jugador\_sin\_objeto\ jugador1)
+$$
+$$
+(mochila\_vacia\ jugador1)
+$$
+El primero indica que no tiene objetos en las manos y el segundo que no tiene objetos en la mochila.
+
+Con esto ya tenemos toda la representación del problema realizada. 
+
+\subsection{Funcionalidad}
+Empecemos por la parte de la mochila. 
+
+En este caso la mochila afecta a funciones anteriores. Vamos a analizarlas una a una.
+Las funciones anteriores que tendremos que modificar son las siguientes.
+
+\begin{enumerate}
+	\item{Coger objeto:} Anteriormente no teníamos limitado el numero de objetos que podía coger el jugador. Por esto he tenido que añadir a las precondiciones que para coger un objeto el jugador se tiene que tener el predicado jugador\_sin\_objetos activo. 
+	
+	\begin{lstlisting}
+:precondition(and			
+	(jugador_sin_objeto ?player)
+	(posicion_jugador ?player ?zona)
+	(posicion_objeto ?objeto ?zona)
+)
+	\end{lstlisting}
+	
+	Ademas a la hora de coger el objeto en el apartado effect tendremos que eliminar ese predicado para indicar que ya tenemos un objeto en las manos.
+	
+	\begin{lstlisting}
+:effect(and 
+	(not (posicion_objeto ?objeto ?zona))
+	(not (jugador_sin_objeto ?player))
+	(jugador_tiene ?player ?objeto)
+	
+)
+	\end{lstlisting}
+	Con estas pequeñas modificaciones la acción coger objeto ya esta preparada.
+	
+	\item{Dejar objeto:} La modificación en este caso es muy parecida a lo explicado en coger objeto. En este caso se tendrá que ver que tenemos un objeto en la mano. Esta parte no cambia el cambio viene en el apartado de effect donde añadiremos la regla (jugador\_sin\_objeto ?player) que indicara que el jugador a soltado el objeto.
+	
+	
+	
+	\begin{lstlisting}
+:precondition(and
+	(posicion_jugador ?player ?zona)
+	(jugador_tiene ?player ?objeto)
+	
+)
+:effect(and 
+	(not (jugador_tiene ?player ?objeto))
+	(posicion_objeto ?objeto ?zona)
+	(jugador_sin_objeto ?player)
+)
+	
+
+	\end{lstlisting}
+\item{Entregar objeto:} En este caso tendremos que tener en cuenta en el apartado de effects que el jugador solo puede entregar objetos que tiene en la mano y por tanto una vez entregado se quedara sin el objeto y con las manos libres. Para esto solo modificaremos la parte de :effect quedando las precondition como las teníamos anteriormente. En la parte de precondition tendremos que añadir el predicado jugador\_sin\_objetos para indicar que el jugador tiene las manos libres.
+
+
+	\begin{lstlisting}
+:precondition(and
+	(posicion_jugador ?player ?zona)
+	(posicion_personaje ?personaje ?zona)
+	(jugador_tiene ?player ?objeto)
+)
+:effect(and 
+	(not (jugador_tiene ?player ?objeto))
+	(jugador_sin_objeto ?player)
+	(personaje_tiene ?personaje ?objeto)
+	(personaje_tiene_objeto ?personaje)
+)
+	\end{lstlisting}
+	
+\end{enumerate}	
+También tendremos que añadir dos nuevas funciones para controlas la mochila. Estas funciones son: 
+\begin{enumerate}
+\item{Meter mochila:} Los necesarios serán le jugador y el objeto unicamente puesto que solo se añadirá el objeto a la mochila. 
+\begin{lstlisting}
+:parameters (?player - jugador ?objeto - objeto)
+\end{lstlisting}
+Las precondiciones que tendremos que tener en cuenta es que la mochila este vaciá y que el jugador tenga el objeto en la mano. Esto podemos conseguirlos usando los predicados mochila\_vacia y jugador\_tiene. 
+
+\begin{lstlisting}
+:precondition(and			
+	(mochila_vacia ?player)
+	(jugador_tiene ?player ?objeto)
+
+)
+\end{lstlisting}
+
+Una vez se cumplan las precondiciones tendremos que añadir que el jugador no tiene objeto en las manos y que la mochila tiene un nuevo objeto y no esta vaciá.
+\begin{lstlisting}
+:effect(and 
+	(not (jugador_tiene ?player ?objeto))
+	(not (mochila_vacia ?player))
+	(mochila_tiene ?player ?objeto)
+	(jugador_sin_objeto ?player)
+
+)
+
+\end{lstlisting}
+\item{Sacar de mochila:} En este caso como explique anteriormente vaciara la mochila en el suelo. Para ello necesitaremos como parámetros aparte del objeto y el jugador, la zona en la que nos encontramos.
+\begin{lstlisting}
+:parameters (?player - jugador ?objeto - objeto ?zona - zona)
+\end{lstlisting}
+Las precondiciones en este caso son que el jugador se encuentre en dicha zona y que tenga un objeto en la mochila.
+\begin{lstlisting}
+:precondition(and			
+	(posicion_jugador ?player ?zona)
+	(mochila_tiene ?player ?objeto)
+
+)
+\end{lstlisting}
+Con esto ya pasamos a la parte de effect donde tendremos que indicar que la mochila esta vacía y el objeto a quedado en el suelo.
+\begin{lstlisting}
+:effect(and 
+	(mochila_vacia ?player)
+	(not (mochila_tiene ?player ?objeto))
+	(posicion_objeto ?objeto ?zona)
+
+)
+\end{lstlisting}
+\end{enumerate}
+Con estos cambios ya tenemos metido todo lo necesarios para que el jugador pueda tener un objeto en la mochila y otro en la mano.
+
+La segunda parte de este ejercicio sera las restricciones dadas por los tipos de terreno de cada zona. Esta restricciones son las siguiente.
+
+\begin{enumerate}
+	\item {Bosque: } Para pasar por el bosque tendremos que tener en cuenta que el jugador necesita tener en las manos o en la mochila el objeto zapatilla. Para esto tendremos que crear una nueva acción para moverse atrevas del bosque.
+	
+	Los parámetros necesarios para saber esto son el jugador, su orientación , la zona actual y de destino, el tipo de terreno de la zona de destino y los objetos de zapatillas para ver si tenemos alguno.
+	
+	\begin{lstlisting}
+:parameters(
+	 ?player - jugador
+	 ?cardinal - orientacion ?zona_actual - zona ?zona_destino - zona  
+	 ?terreno - suelos 
+	 ?objeto - zapatilla
+)
+
+	\end{lstlisting}
+Las precondiciones utilizadas en este caso son muy parecidas a las del ejercicio1 añadiendo un predicado para que el jugador tenga las zapatillas en la mano o en la mochila.
+	\begin{lstlisting}
+:precondition (and 
+(orientacion_jugador ?player ?cardinal)
+	(posicion_jugador ?player ?zona_actual)
+	(conectada ?cardinal ?zona_actual ?zona_destino)
+	(tipo_terreno ?zona_destino ?terreno)
+	(or (jugador_tiene ?player ?objeto) (mochila_tiene ?player ?objeto))
+
+)
+	\end{lstlisting}
+	Si se cumplen las precondiciones tendremos que mirar que el terreno de la zona de destino sea bosque con un when y si se cumple el jugador podrá avanzar.
+	\begin{lstlisting}
+:effect(and 
+	(when (tipo_terreno ?zona_destino bosque) 
+		(and 
+			(not (posicion_jugador ?player ?zona_actual))
+			(posicion_jugador ?player ?zona_destino)
+			(increase (coste_total) (coste ?zona_actual ?zona_destino))
+		)
+	)
+)	
+	\end{lstlisting}
+\newpage	
+\item{Agua:} En este caso sera prácticamente igual que en el caso anterior cambiando que el objeto sea de tipo bikini y que la zona sea de agua. Como se muestra en el siguiente código.
+
+\begin{lstlisting}
+(:action moverseOrientadoAgua
+	:parameters(
+		?player - jugador 
+		?cardinal - orientacion 
+		?zona_actual - zona 
+		?zona_destino - zona  
+		?terreno - suelos 
+		?objeto - bikini
+	)
+	:precondition (and 
+		(orientacion_jugador ?player ?cardinal)
+		(posicion_jugador ?player ?zona_actual)
+		(conectada ?cardinal ?zona_actual ?zona_destino)
+		(tipo_terreno ?zona_destino ?terreno)
+		(or (jugador_tiene ?player ?objeto) (mochila_tiene ?player ?objeto))
+		
+	)
+	:effect(and 
+		
+		(when (tipo_terreno ?zona_destino agua) (and 
+		
+			(not (posicion_jugador ?player ?zona_actual))
+			(posicion_jugador ?player ?zona_destino)
+			(increase (coste_total) (coste ?zona_actual ?zona_destino))
+		))
+	)
+)
+
+\end{lstlisting}
+
+\item{Arena y piedra:} Para pasar por este terreno no se necesita ningun tipo de objeto. Por tanto las precondiciones y las parametros son los mismo que en el ejercicio 1 añadiendo unicamente el predicado (tipo\_terreno ?zona\_destino ?terreno) para saber el terreno que tendremos y en los parametros añadimos ?terreno - suelo para obtener el tipo de suelo. 
+
+Depues la parte effects es exactamente igual que en el movimiento en bosque y agua, simplemente añadiendo dos when en vez de uno y que uno de ellos se active si el terreno es arena y otro si es roca. 
+
+\end{enumerate}
+	
+	\begin{lstlisting}
+	
+	\end{lstlisting}
+	
 
 
 
-Se añaden dos nuevos tipos de objetos(bikini y zapatos)
+
+
+
 
 
 
