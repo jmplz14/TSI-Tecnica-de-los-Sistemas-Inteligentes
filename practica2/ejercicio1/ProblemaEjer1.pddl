@@ -53,8 +53,6 @@ norte este sur oeste - orientacion
 (conectada norte z1 z12)
 (conectada norte z13 z14)
 (conectada sur z14 z13)
-(conectada sur z13 z12)
-(conectada norte z12 z13)
 (conectada oeste z15 z14)
 (conectada este z14 z15)
 (conectada este z15 z16)

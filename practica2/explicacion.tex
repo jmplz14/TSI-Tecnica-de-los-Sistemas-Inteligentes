@@ -231,7 +231,42 @@ Si se cumplen estas precondiciones podremos movernos, para esto necesitaremos se
 \end{lstlisting}
 \end{enumerate}
 \newpage
+\subsection{Ejemplo utilizado}
+El mapa que usare en todos los ejercicios es este.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../../../Escritorio/mapanumerado}
+	\caption{}
+	\label{fig:mapanumerado}
+\end{figure}
+
+
+En caso hemos colocado un personaje de cada tipo, un jugador y un objeto de cada tipo.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Tipo & Nombre & Posición \\
+			\hline \hline
+			oro & oro1 & 25 \\ \hline
+			oscar & oscar1 & 18\\ \hline
+			rosa & rosa1 & 9\\ \hline
+			algoritmo & algoritmo1 & 12 \\ \hline
+			manzana & manzana1 & 11\\ \hline
+			princesa & princesa1 & 7 \\ \hline
+			 principe & principe1 & 10 \\ \hline
+			  profesor & profesor1 & 20  \\ \hline
+			   bruja & bruja1 & 5 \\ \hline
+			   dicaprio  & dicaprio1& 6 \\ \hline
+			     jugador & jugador & 1 \\ \hline
+
+		\end{tabular}
+	\end{center}
+\end{table}
+
+Como goal puse que entregaran a un objeto a cada personaje. Sin importar el objeto que sea. Fue ejecutado sin -O.
 \section{Ejercicio 2}
 \subsection{Representación del mundo}
 El ejercicio nos pide añadir costes a los caminos entre zonas. De forma que moverse de z1 a z2 tenga un coste x. Para esto necesitaremos añadir nuevos predicados que nos informen del coste entre las zonas. Para esto he optado por añadir un nuevo predicado de tipo función donde se almacenara el coste del camino entre dos zonas. La estructura es la siguiente:
@@ -261,6 +296,92 @@ En este caso los cambios que se realizan son muy pequeños. Tenemos que ir suman
 )
 \end{lstlisting}
 
+\subsection{Ejemplo utilizado}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../../../Escritorio/mapanumerado}
+\end{figure}
+
+
+En caso hemos colocado un personaje de cada tipo, un jugador y un objeto de cada tipo.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Tipo & Nombre & Posición \\
+			\hline \hline
+			oro & oro1 & 25 \\ \hline
+			oscar & oscar1 & 18\\ \hline
+			rosa & rosa1 & 9\\ \hline
+			algoritmo & algoritmo1 & 12 \\ \hline
+			manzana & manzana1 & 11\\ \hline
+			princesa & princesa1 & 7 \\ \hline
+			principe & principe1 & 10 \\ \hline
+			profesor & profesor1 & 20  \\ \hline
+			bruja & bruja1 & 5 \\ \hline
+			dicaprio  & dicaprio1& 6 \\ \hline
+			jugador & jugador & 1 \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+
+En este caso obligue mediante el goal que a cierto personaje le diera cierto objeto. Hice esto porque sino tardo mucho en ejecutar al tener muchas opciones y optimizar con -O
+\newpage
+\begin{lstlisting}
+(:goal (AND
+	(personaje_tiene princesa1 rosa1)
+	(personaje_tiene principe1 oro1)
+	(personaje_tiene profesor1 algoritmo1)
+	(personaje_tiene bruja1 manzana1)
+	(personaje_tiene dicaprio1 oscar1)
+))
+(:metric minimize (coste_total))
+\end{lstlisting}
+
+Los pesos de los arcos son los siguientes:
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Zona & Zona & coste \\
+			\hline \hline
+			z1 & z2 & 1 \\ \hline
+			z2 & z3 & 3 \\ \hline
+			z3 & z4 & 1 \\ \hline
+			z4 & z5 & 1 \\ \hline
+			z4 & z9 & 1 \\ \hline
+			z4 & z10 & 3  \\ \hline
+			z5 & z6 & 1 \\ \hline
+			z7 & z8 & 2 \\ \hline
+			z8 & z9 & 1 \\ \hline
+			z10 & z11 & 2 \\ \hline
+			z12 & z13 & 1 \\ \hline
+			z13 & z14 & 1 \\ \hline
+			z14 & z15 & 2 \\ \hline
+			z15 & z16 & 1 \\ \hline
+			z16 & z17 & 4 \\ \hline
+			z16 & z7 & 3 \\ \hline
+			z17 & z18 & 1 \\ \hline
+			z18 & z19 & 2 \\ \hline
+			z19 & z20 & 1 \\ \hline
+			z19 & z21 & 2 \\ \hline
+			z20 & z22 & 1 \\ \hline
+			z21 & z22 & 1 \\ \hline
+			z22 & z23 & 3 \\ \hline
+			z22 & z25 & 2 \\ \hline
+			z23 & z24 & 1 \\ \hline
+			z24 & z25 & 2 \\ \hline
+			
+			
+			
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+ 
 \section{Ejercicio 3}
 \subsection{Representación del mundo}
 Se añade a la zona una nueva características que representara el tipo de terreno. Para representar el tipo de terreno de una zona se necesitara un nuevo predicado. El predicado contendrá la zona y el tipo de terreno. 
@@ -574,20 +695,54 @@ Princesa1 representaría al personaje y 5 seria el numero máximo de objetos que
 	Se introducen 3 nuevo tipos de predicados. El primero seria el que marca los putos que hay que conseguir entre varios personajes.
 	
 	$$
-	(=\ (puntos_minimos)\ 10)
+	(=\ (puntos\_minimos)\ 10)
 	$$
 	
 	El valor numérico indicaría el numero de puntos mínimos a conseguir.
 	Después tendremos que tener otro que usaremos como contador de puntos alcanzados. En este todos los personajes añadirán los puntos que van consiguiendo al entregar un objeto
 	$$
-	(= ())
+	(=\ (puntos\_conjuntos)\ 0)
 	$$
+	
+	También necesitaremos otro que actué como contador individual para cada personaje. De forma que cada vez que entregue un objeto se cuente en este. Este predicado yo ya lo tenia puesto que anteriormente ya que hice el problema pensando en la posibilidad de que se tengan mas de un jugador. Es el siguiente:
+	
+	$$
+	(=\ (puntos\_totales\ jugador2)\ 0)
+	$$
+	
+	El ultimo que he introducido ha sido el que se encarga de tener el mínimo de puntos para cada personaje. 
+	
+	$$
+	(=\ (puntos\_jugador\_objetivo\ jugador2)\ 5)
+	$$
+	
+	El goal en este caso tiene que cumplir varios requisitos. Que todos los jugadores superen su limite de puntos y que en conjunten superen también el mínimo conjunto. Seria el siguiente:
+\begin{lstlisting}
+(:goal (AND
+	(> (puntos_conjuntos) (puntos_minimos))
+	(> (puntos_totales jugador1) (puntos_jugador_objetivo jugador1))
+	(> (puntos_totales jugador2) (puntos_jugador_objetivo jugador2))
+))
+\end{lstlisting}	
+	
+	
+	
+	
 	\subsection{Funcionalidad}
-	\begin{lstlisting}
+	En este caso como en el ejercicio anterior lo único que he tenido que modificar es la parte de effects de la acction que entrega objetos a los personajes. El único cambio en mi caso es añadir un incremento que aumente el contador compartido.
 	
-	\end{lstlisting}
-	\begin{lstlisting}
 	
+	\begin{lstlisting}
+:effect(and 
+	(not (jugador_tiene ?player ?objeto))
+	(jugador_sin_objeto ?player)
+	(personaje_tiene ?personaje ?objeto)
+	(personaje_tiene_objeto ?personaje)
+	(increase (puntos_totales ?player) (valor_objeto ?objeto ?personaje))
+	(increase (puntos_conjuntos) (valor_objeto ?objeto ?personaje))
+	(decrease (bolsillo ?personaje) 1)
+
+)
 	\end{lstlisting}
 	
 	
