@@ -1,15 +1,16 @@
-Dominio:DEjer5
-Problema:PEjer5
+Dominio:DEjer6
+Problema:PEjer6
 numero de zonas:25
 puntos_totales:10
-bolsillo:[bruja1:1 princesa1:5]
-V->z1[jugador1-jugador][arena]=1=z2[][arena]=3=z3[][piedra]
+bolsillo:[bruja1:2 dicaprio1:1]
+puntos_jugador[jugador1:5 jugador2:5]
+V->z1[jugador1-jugador][arena]=1=z2[jugador2-jugador][arena]=3=z3[][piedra]
 V->z3[][]=1=z4[][piedra]=4=z5[][piedra]
 V->z5[dicaprio1-dicaprio][]=1=z6[zapatilla1-zapatilla][arena]
 H->z7[rosa1-rosa][piedra]=2=z8[oscar1-oscar][arena]=1=z9[][bosque]
-H->z9[bikini1-bikini][]=1=z4[][]=3=z10[][bosque]
-H->z10[][]=2=z11[princesa1-princesa][bosque]
-H->z13[][precipicio]=1=z12[manzana1-manzana][arena]=2=z1[][]
+H->z9[bikini1-bikini][]=1=z4[oscar2-oscar][]=3=z10[][bosque]
+H->z10[manzana3-manzana][]=2=z11[princesa1-princesa][bosque]
+H->z13[manzana2-manzana][precipicio]=1=z12[manzana1-manzana][arena]=2=z1[][]
 H->z14[algoritmo1-algoritmo][piedra]=1=z13[][]
 V->z14[][]=2=z15[oro1-oro][arena]=1=z16[][arena]
 V->z16[bruja1-bruja][]=3=z7[][]
@@ -17,6 +18,6 @@ H->z18[principe1-principe][piedra]=1=z17[][arena]=4=z16[][]
 V->z18[][]=2=z19[][agua]=2=z21[][precipicio]
 H->z20[][agua]=1=z19[][]
 V->z20[][]=1=z22[][piedra]=3=z23[][piedra]
-H->z25[][piedra]=2=z22[][]=1=z21[][]
+H->z25[algoritmo2:algoritmo][piedra]=2=z22[][]=1=z21[][]
 V->z25[][]=2=z24[][piedra]
 H->z24[profesor1-profesor][]=1=z23[][]

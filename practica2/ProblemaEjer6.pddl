@@ -1,8 +1,9 @@
-(define (problem PEjer5)
-(:domain DEjer5)(:objects
+(define (problem PEjer6)
+(:domain DEjer6)(:objects
 z1 z2 z3 z4 z5 z6 z7 z8 z9 z10 z11 z12 z13 z14 z15 z16 z17 z18 z19 z20 z21 z22 z23 z24 z25 - zona
 piedra agua bosque arena precipicio - suelos
 jugador1 - jugador
+jugador2 - jugador
 dicaprio1 - dicaprio
 zapatilla1 - zapatilla
 rosa1 - rosa
@@ -18,12 +19,17 @@ profesor1 - profesor
 norte este sur oeste - orientacion
 )
 (:init
-(jugador_sin_objeto jugador1)
-(mochila_vacia jugador1)
 (orientacion_jugador jugador1 norte)
 (posicion_jugador jugador1 z1)
 (= (puntos_totales jugador1) 0)
+(jugador_sin_objeto jugador1)
+(mochila_vacia jugador1)
 (tipo_terreno z1 arena)
+(orientacion_jugador jugador2 norte)
+(posicion_jugador jugador2 z2)
+(= (puntos_totales jugador2) 0)
+(jugador_sin_objeto jugador2)
+(mochila_vacia jugador2)
 (tipo_terreno z2 arena)
 (tipo_terreno z3 piedra)
 (tipo_terreno z4 piedra)
@@ -171,7 +177,7 @@ norte este sur oeste - orientacion
 (= (coste_total) 0)
 (= (puntos_minimos) 10)
 (= (bolsillo bruja1) 1)
-(= (bolsillo princesa1) 5)
+(= (bolsillo princesa1) 1)
 (= (bolsillo dicaprio1) 1)
 (= (bolsillo principe1) 1)
 (= (bolsillo profesor1) 1)
@@ -200,7 +206,12 @@ norte este sur oeste - orientacion
 (= (valor_objeto oro1 bruja1) 3)
 (= (valor_objeto oro1 principe1) 10)
 (= (valor_objeto oro1 profesor1) 1)
+(=(puntos_conjuntos) 0)
+(= (puntos_jugador_objetivo jugador1) 5)
+(= (puntos_jugador_objetivo jugador2) 5)
 )
 (:goal (AND
-(> (puntos_totales jugador1) (puntos_minimos))
+(> (puntos_conjuntos) (puntos_minimos))
+(> (puntos_totales jugador1) (puntos_jugador_objetivo jugador1))
+(> (puntos_totales jugador2) (puntos_jugador_objetivo jugador2))
 )))

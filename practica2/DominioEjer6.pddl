@@ -1,4 +1,4 @@
-(define (domain DEjer5); girar izquierda
+(define (domain DEjer6); girar izquierda
   (:requirements :strips :equality :typing)
   (:types  jugador - tipos
 				orientacion
@@ -31,6 +31,8 @@
 		(valor_objeto ?objeto - objeto ?personaje - personaje)
 		(puntos_minimos)
 		(puntos_totales ?player - jugador)
+		(puntos_conjuntos)
+		(puntos_jugador_objetivo ?player - jugador)
 		(bolsillo ?personaje - personaje)
 	)
 
@@ -210,6 +212,7 @@
 					(personaje_tiene ?personaje ?objeto)
 					(personaje_tiene_objeto ?personaje)
 					(increase (puntos_totales ?player) (valor_objeto ?objeto ?personaje))
+					(increase (puntos_conjuntos) (valor_objeto ?objeto ?personaje))
 					(decrease (bolsillo ?personaje) 1)
 					
 					)
