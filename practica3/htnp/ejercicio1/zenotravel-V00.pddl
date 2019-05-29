@@ -76,11 +76,11 @@
 
     (:method Case3 ;si no est� en la ciudad destino, pero avion y persona est�n en la misma ciudad
 	  :precondition (and (at ?p - person ?c1 - city)
-			                 (not(at ?a - aircraft ?c1 - city)))
+			                 (at ?a - aircraft ?c2 - city))
 
 				     
 	  :tasks ( 
-            (pedir-avion ?a ?c1)
+            (mover-avion ?a ?c2 ?c1)
 	  	      (board ?p ?a ?c1)
 		        (mover-avion ?a ?c1 ?c)
 		        (debark ?p ?a ?c )))
@@ -103,16 +103,6 @@
    )
   )
 
-  (:task pedir-avion
- :parameters (?a - aircraft ?c2 - city)
- (:method fuel-suficiente 
-  :precondition (and (at ?a - aircraft ?c1 - city)
-                  (hay-fuel ?a - aircraft ?c1 - city ?c2))
-  :tasks (
-          (fly ?a ?c1 ?c2)
-         )
-   )
-  )
  
 (:import "C:\Users\jo_se\Desktop\practica3\htnp\Primitivas-ZenoTravel.pddl") 
 

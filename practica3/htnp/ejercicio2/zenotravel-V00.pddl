@@ -21,8 +21,7 @@
 (:predicates (at ?x - (either person aircraft) ?c - city)
              (in ?p - person ?a - aircraft)
              (different ?x ?y) (igual ?x ?y)
-             (hay-fuel-lento ?a ?c1 ?c2)
-             (hay-fuel-rapido ?a ?c1 ?c2)
+             (hay-fuel ?a ?c1 ?c2)
              )
 (:functions (fuel ?a - aircraft)
             (distance ?c1 - city ?c2 - city)
@@ -35,7 +34,6 @@
             (total-fuel-used)
             (boarding-time)
             (debarking-time)
-            (fuel-limit)
             )
 
 ;; el consecuente "vac�o" se representa como "()" y significa "siempre verdad"
@@ -55,14 +53,8 @@
 ;; los siguientes ejercicios).
 (:derived 
   
-  (hay-fuel-lento ?a - aircraft ?c1 - city ?c2 - city)
+  (hay-fuel ?a - aircraft ?c1 - city ?c2 - city)
   (>= (fuel ?a) (* (distance ?c1 ?c2) (slow-burn ?a))) )
-
-(:derived 
-  
-  (hay-fuel-rapido ?a - aircraft ?c1 - city ?c2 - city)
-  (>= (fuel ?a) (* (distance ?c1 ?c2) (fast-burn ?a))) )
-
 
 (:task transport-person
 	:parameters (?p - person ?c - city)
@@ -97,51 +89,26 @@
 
 (:task mover-avion
  :parameters (?a - aircraft ?c1 - city ?c2 -city)
- (:method fuel-suficiente-rapido ;; este método se escogerá para usar la acción fly siempre que el avión tenga fuel para
+ (:method fuel-suficiente ;; este método se escogerá para usar la acción fly siempre que el avión tenga fuel para
                           ;; volar desde ?c1 a ?c2
 			  ;; si no hay fuel suficiente el método no se aplicará y la descomposición de esta tarea
 			  ;; se intentará hacer con otro método. Cuando se agotan todos los métodos posibles, la
 			  ;; descomponsición de la tarea mover-avión "fallará". 
 			  ;; En consecuencia HTNP hará backtracking y escogerá otra posible vía para descomponer
 			  ;; la tarea mover-avion (por ejemplo, escogiendo otra instanciación para la variable ?a)
-  :precondition (hay-fuel-rapido ?a ?c1 ?c2)
-  :tasks (
-          (zoom ?a ?c1 ?c2)
-         )
-   )
-   (:method fuel-no-suficiente-rapido ;; este método se escogerá para usar la acción fly siempre que el avión tenga fuel para
-                          ;; volar desde ?c1 a ?c2
-			  ;; si no hay fuel suficiente el método no se aplicará y la descomposición de esta tarea
-			  ;; se intentará hacer con otro método. Cuando se agotan todos los métodos posibles, la
-			  ;; descomponsición de la tarea mover-avión "fallará". 
-			  ;; En consecuencia HTNP hará backtracking y escogerá otra posible vía para descomponer
-			  ;; la tarea mover-avion (por ejemplo, escogiendo otra instanciación para la variable ?a)
-  :precondition (not(hay-fuel-rapido ?a ?c1 ?c2))
-  :tasks (
-          (refuel ?a ?c1)
-          (zoom ?a ?c1 ?c2)
-         )
-   )
- (:method fuel-suficiente-lento ;; este método se escogerá para usar la acción fly siempre que el avión tenga fuel para
-                          ;; volar desde ?c1 a ?c2
-			  ;; si no hay fuel suficiente el método no se aplicará y la descomposición de esta tarea
-			  ;; se intentará hacer con otro método. Cuando se agotan todos los métodos posibles, la
-			  ;; descomponsición de la tarea mover-avión "fallará". 
-			  ;; En consecuencia HTNP hará backtracking y escogerá otra posible vía para descomponer
-			  ;; la tarea mover-avion (por ejemplo, escogiendo otra instanciación para la variable ?a)
-  :precondition (hay-fuel-lento ?a ?c1 ?c2)
+  :precondition (hay-fuel ?a ?c1 ?c2)
   :tasks (
           (fly ?a ?c1 ?c2)
          )
    )
-   (:method fuel-no-suficiente-lento ;; este método se escogerá para usar la acción fly siempre que el avión tenga fuel para
+   (:method fuel-no-suficiente ;; este método se escogerá para usar la acción fly siempre que el avión tenga fuel para
                           ;; volar desde ?c1 a ?c2
 			  ;; si no hay fuel suficiente el método no se aplicará y la descomposición de esta tarea
 			  ;; se intentará hacer con otro método. Cuando se agotan todos los métodos posibles, la
 			  ;; descomponsición de la tarea mover-avión "fallará". 
 			  ;; En consecuencia HTNP hará backtracking y escogerá otra posible vía para descomponer
 			  ;; la tarea mover-avion (por ejemplo, escogiendo otra instanciación para la variable ?a)
-  :precondition (not(hay-fuel-lento ?a ?c1 ?c2))
+  :precondition (not(hay-fuel ?a ?c1 ?c2))
   :tasks (
           (refuel ?a ?c1)
           (fly ?a ?c1 ?c2)
