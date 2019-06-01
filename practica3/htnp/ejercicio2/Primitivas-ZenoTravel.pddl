@@ -4,18 +4,15 @@
  :condition (and  (at ?p ?c)
                   (at ?a ?c))
  :effect (and  (not (at ?p ?c))
-               (in ?p ?a))
-               (increase (personas-montadas ?a) 1))
+               (in ?p ?a)))
 
 (:durative-action debark
  :parameters (?p - person ?a - aircraft ?c - city)
  :duration (= ?duration (debarking-time))
  :condition (and (in ?p ?a)
-                 (at ?a ?c)
-                 )
+                 (at ?a ?c))
  :effect (and  (not (in ?p ?a))
-               (at ?p ?c))
-               (decrease (personas-montadas ?a) 1))
+               (at ?p ?c)))
 
 (:durative-action fly 
  :parameters (?a - aircraft ?c1 ?c2 - city)
@@ -25,7 +22,7 @@
                          (* (distance ?c1 ?c2) (slow-burn ?a))))
  :effect (and  (not (at ?a ?c1))
                (at ?a ?c2)
-              (increase (total-fuel-used ?a)
+              (increase (total-fuel-used)
                          (* (distance ?c1 ?c2) (slow-burn ?a)))
               (decrease (fuel ?a) 
                          (* (distance ?c1 ?c2) (slow-burn ?a)))))

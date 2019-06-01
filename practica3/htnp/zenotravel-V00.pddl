@@ -19,6 +19,7 @@
 (:types aircraft person city - object)
 (:constants slow fast - object)
 (:predicates (at ?x - (either person aircraft) ?c - city)
+             (destino ?p - person ?c1 - city)
              (in ?p - person ?a - aircraft)
              (different ?x ?y) (igual ?x ?y)
              (hay-fuel-lento ?a ?c1 ?c2)
@@ -38,6 +39,8 @@
             (boarding-time)
             (debarking-time)
             (fuel-limit)
+            (personas-montadas ?a - aircraft)
+            (limite-pasajeros ?a - aircraft)
             )
 
 ;; el consecuente "vac�o" se representa como "()" y significa "siempre verdad"
@@ -89,9 +92,10 @@
 			                 (at ?a - aircraft ?c1 - city))
 				     
 	  :tasks ( 
-	  	      (board ?p ?a ?c1)
+	  	      ;(board ?p ?a ?c1)
+            (embarcar-recursivo ?a ?c1)
 		        (mover-avion ?a ?c1 ?c)
-		        (debark ?p ?a ?c )))
+		        (desembarcar-recursivo ?a ?c )))
 
     (:method Case3 ;si no est� en la ciudad destino, pero avion y persona est�n en la misma ciudad
 	  :precondition (and (at ?p - person ?c1 - city)
@@ -100,9 +104,10 @@
 				     
 	  :tasks ( 
             (mover-avion ?a ?c2 ?c1)
-	  	      (board ?p ?a ?c1)
+	  	      ;(board ?p ?a ?c1)
+            (embarcar-recursivo ?a ?c1)
 		        (mover-avion ?a ?c1 ?c)
-		        (debark ?p ?a ?c )))
+		        (desembarcar-recursivo ?a ?c )))
 )
 
 
@@ -159,6 +164,44 @@
          )
    )
   )
+
+(:task embarcar-recursivo ;;tarea de mayor nivel de abstracción
+ :parameters(?a - aircraft ?c1 - city) 
+
+ (:method embarcar ;; método para decidir si una persona va a la pelicula de terror.
+  :precondition (AND 
+                  (at ?p - person ?c1)
+                  (< (personas-montadas ?a)  (limite-pasajeros ?a))
+                  (NOT (destino ?p - person  ?c1)))
+  :tasks ( 
+           (board ?p ?a ?c1)
+           ;(+ (personas-montadas ?a) 1)
+           (embarcar-recursivo ?a ?c1)))			;; recurre para decidir la siguiente persona en la cola
+ 
+  (:method caso-base ;; método caso base de la recursión
+   :precondition():tasks()))
+
+(:task desembarcar-recursivo ;;tarea de mayor nivel de abstracción
+ :parameters(?a - aircraft ?c1 - city) 
+
+ (:method desembarcar ;; método para decidir si una persona va a la pelicula de terror.
+  :precondition (and (destino ?p - person  ?c1)
+                (in ?p - person ?a))
+  :tasks ( 
+           (debark ?p ?a ?c1)
+           ;(+ (personas-montadas ?a) 1)
+           (desembarcar-recursivo ?a ?c1)))			;; recurre para decidir la siguiente persona en la cola
+ 
+  (:method caso-base ;; método caso base de la recursión
+   :precondition():tasks()))
+
+
+
+
+
+
+
+
 
 
  
