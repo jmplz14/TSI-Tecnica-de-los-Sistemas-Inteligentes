@@ -7,16 +7,20 @@
 
 (:objects 
     p1 p2 p3 - person
-    c1 c2 c3 c4 c5 almeria barcelona bilbao cadiz cordoba gibraltar granada huelva jaen madrid malaga sevilla - city
-    a1 a2 a3 - aircraft
+    almeria barcelona bilbao cadiz cordoba gibraltar granada huelva jaen madrid malaga sevilla - city
+    a1 a2 - aircraft
 )
 (:init
-    (at p1 sevilla) 
-    (at p2 sevilla)
-    (at p3 sevilla)
-    (at a1 sevilla)
-    ;(at a2 cordoba)
-    ;(at a3 madrid)
+    (at p1 madrid) 
+    ;(at p2 malaga)
+    ;(at p3 sevilla)
+    ;(at p3 sevilla)
+    ;(at p4 gibraltar)
+    ;(at p5 sevilla)
+    ;(at p6 cadiz)
+    (at a1 almeria)
+    ;(at a2 gibraltar)
+    ;(at a3 bilbao)
 
 ;    (= (distance c1 c2) 100)
 ;    (= (distance c2 c3) 100)
@@ -96,7 +100,7 @@
     (= (distance huelva cordoba) 241)
     (= (distance huelva gibraltar) 289)
     (= (distance huelva granada) 346)
-    (= (distance huelva huelva) 347)
+    (= (distance huelva jaen) 347)
     (= (distance huelva madrid) 591)
     (= (distance huelva malaga) 301)
     (= (distance huelva sevilla) 95)
@@ -129,8 +133,8 @@
     (= (distance cordoba barcelona) 908)
     (= (distance cordoba bilbao) 796)
     (= (distance cordoba cadiz) 261)
-    (= (distance cordoba cordoba) 294)
-    (= (distance cordoba gibraltar) 160)
+    (= (distance cordoba gibraltar) 294)
+    (= (distance cordoba granada) 160)
     (= (distance cordoba huelva) 241)
     (= (distance cordoba jaen) 108)
     (= (distance cordoba madrid) 396)
@@ -140,9 +144,9 @@
     (= (distance cadiz almeria) 463)
     (= (distance cadiz barcelona) 1284)
     (= (distance cadiz bilbao) 1058)
-    (= (distance cadiz cadiz) 261)
-    (= (distance cadiz cordoba) 124)
-    (= (distance cadiz gibraltar) 296)
+    (= (distance cadiz cordoba) 261)
+    (= (distance cadiz gibraltar) 124)
+    (= (distance cadiz granada) 296)
     (= (distance cadiz huelva) 214)
     (= (distance cadiz jaen) 330)
     (= (distance cadiz madrid) 654)
@@ -151,10 +155,10 @@
     
     (= (distance bilbao almeria) 958)
     (= (distance bilbao barcelona) 620)
-    (= (distance bilbao bilbao) 1058)
-    (= (distance bilbao cadiz) 796)
-    (= (distance bilbao cordoba) 1110)
-    (= (distance bilbao gibraltar) 829)
+    (= (distance bilbao cadiz) 1058)
+    (= (distance bilbao cordoba) 796)
+    (= (distance bilbao gibraltar) 1110)
+    (= (distance bilbao granada) 829)
     (= (distance bilbao huelva) 939)
     (= (distance bilbao jaen) 730)
     (= (distance bilbao madrid) 395)
@@ -162,18 +166,41 @@
     (= (distance bilbao sevilla) 933)
 
     (= (distance barcelona almeria) 809)
-    (= (distance barcelona barcelona) 620)
-    (= (distance barcelona bilbao) 1284)
-    (= (distance barcelona cadiz) 908)
-    (= (distance barcelona cordoba) 1124)
-    (= (distance barcelona gibraltar) 868)
+    (= (distance barcelona bilbao) 620)
+    (= (distance barcelona cadiz) 1284)
+    (= (distance barcelona cordoba) 908)
+    (= (distance barcelona gibraltar) 1124)
+    (= (distance barcelona granada) 868)
     (= (distance barcelona huelva) 1140)
     (= (distance barcelona jaen) 804)
     (= (distance barcelona madrid) 621)
     (= (distance barcelona malaga) 997)
     (= (distance barcelona sevilla) 1046)
 
+    (= (distance almeria almeria) 0)
+    (= (distance barcelona barcelona) 0)
+    (= (distance bilbao bilbao) 0)
+    (= (distance cadiz cadiz) 0)
+    (= (distance cordoba cordoba) 0)
+    (= (distance gibraltar gibraltar) 0) 
+    (= (distance granada granada) 0) 
+    (= (distance huelva huelva) 0)
+    (= (distance jaen jaen) 0)
+    (= (distance madrid madrid) 0)
+    (= (distance malaga malaga) 0)
+    (= (distance sevilla sevilla) 0)
 
+    (= (distance almeria barcelona) 809)
+    (= (distance almeria bilbao) 958)
+    (= (distance almeria cadiz) 463)
+    (= (distance almeria cordoba) 316)
+    (= (distance almeria gibraltar) 339)
+    (= (distance almeria granada) 162)
+    (= (distance almeria huelva) 505)
+    (= (distance almeria jaen) 220)
+    (= (distance almeria madrid) 547)
+    (= (distance almeria malaga) 207)
+    (= (distance almeria sevilla) 410)
 
 
 
@@ -181,7 +208,7 @@
 
 
     (= (total-fuel-used) 0)
-    (= (fuel-limit) 5136)
+    (= (fuel-limit) 5000)
 
 
     (= (limite-pasajeros a1) 20)
@@ -191,9 +218,8 @@
     (= (fast-speed a1) 20)
     (= (slow-burn a1) 1)
     (= (fast-burn a1) 2)
-    (= (capacity a1) 1000)
+    (= (capacity a1) 2000)
     (= (refuel-rate a1) 1)
-
 
     (= (limite-pasajeros a2) 20)
     (= (personas-montadas a2) 0)
@@ -202,34 +228,32 @@
     (= (fast-speed a2) 20)
     (= (slow-burn a2) 1)
     (= (fast-burn a2) 2)
-    (= (capacity a2) 1000)
+    (= (capacity a2) 2000)
     (= (refuel-rate a2) 1)
 
-    (= (limite-pasajeros a3) 20)
-    (= (personas-montadas a3) 0)
-    (= (fuel a3) 1000)
-    (= (slow-speed a3) 10)
-    (= (fast-speed a3) 20)
-    (= (slow-burn a3) 1)
-    (= (fast-burn a3) 2)
-    (= (capacity a3) 1000)
-    (= (refuel-rate a3) 1)
+
 
     (= (boarding-time) 1)
     (= (debarking-time) 1)
 
-    (destino p1 malaga)
-    (destino p2 malaga)
-    (destino p3 sevilla)
+    (destino p1 jaen)
+    ;(destino p2 madrid)
+    ;(destino p3 madrid)
+    ;(destino p4 malaga)
+    ;(destino p5 jaen)
+    ;(destino p6 barcelona)
  )
 
 
 (:tasks-goal
    :tasks(
-   (transport-person p1 malaga)
-   (transport-person p2 malaga)
-   (transport-person p3 sevilla)
-   
+   ;(transport-person p4 malaga)
+   ;(transport-person p1 madrid)
+   ;(transport-person p2 madrid)
+   ;(transport-person p3 madrid)
+   ;(transport-person)
+   (iniciar-plan)
+
    )
   )
 )

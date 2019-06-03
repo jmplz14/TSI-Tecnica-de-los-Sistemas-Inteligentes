@@ -244,3 +244,117 @@
     (= (distance bilbao barcelona) 620)
 
     (= (distance barcelona almeria) 809)
+
+
+    (= (limite-pasajeros a2) 20)
+    (= (personas-montadas a2) 0)
+    (= (fuel a2) 1000)
+    (= (slow-speed a2) 10)
+    (= (fast-speed a2) 20)
+    (= (slow-burn a2) 1)
+    (= (fast-burn a2) 2)
+    (= (capacity a2) 1000)
+    (= (refuel-rate a2) 1)
+
+    (= (limite-pasajeros a3) 20)
+    (= (personas-montadas a3) 0)
+    (= (fuel a3) 1000)
+    (= (slow-speed a3) 10)
+    (= (fast-speed a3) 20)
+    (= (slow-burn a3) 1)
+    (= (fast-burn a3) 2)
+    (= (capacity a3) 1000)
+    (= (refuel-rate a3) 1)
+
+
+
+    (:method Case1 ; si la persona est� en la ciudad no se hace nada
+	 :precondition (and (at ?p ?c)
+                  (destino ?p - person ?c - city))
+	 :tasks ()
+   )
+	 
+   
+   (:method Case2 ;si no est� en la ciudad destino, pero avion y persona est�n en la misma ciudad
+	  :precondition (and (at ?p - person ?c1 - city)
+			                 (at ?a - aircraft ?c1 - city))
+				     
+	  :tasks ( 
+	  	      ;(board ?p ?a ?c1)
+            (embarcar-recursivo ?a ?c1)
+		        (mover-avion ?a ?c1 ?c)
+		        (desembarcar-recursivo ?a ?c )))
+
+    (:method Case3 ;si no est� en la ciudad destino, pero avion y persona est�n en la misma ciudad
+	  :precondition (and (at ?p - person ?c1 - city)
+			                 (at ?a - aircraft ?c2 - city))
+
+				     
+	  :tasks ( 
+            (mover-avion ?a ?c2 ?c1)
+	  	      ;(board ?p ?a ?c1)
+            (embarcar-recursivo ?a ?c1)
+		        (mover-avion ?a ?c1 ?c)
+		        (desembarcar-recursivo ?a ?c )))
+
+    (:method Case4 
+	  :precondition (and (in ?p - person ?a - aircraft)
+			                 (at ?a - aircraft ?c1 - city)
+                       (not(destino ?p - person ?c1 - city)))
+
+				     
+	  :tasks ( 
+
+            ;(mover-avion ?a ?c2 ?c1)
+	  	      ;(board ?p ?a ?c1)
+            (embarcar-recursivo ?a ?c1)
+		        (mover-avion ?a ?c1 ?c)
+		        (desembarcar-recursivo ?a ?c )))
+
+
+
+
+
+-------------------------------------------------------------------------
+(:method sin-avion-y-avion-en-otra-ciudad
+    :precondition (and (at ?persona - person ?c1 - city)
+                        (at ?avion - aircraft ?c2 - city)
+                        (not (= ?c1 ?c2)))
+    :tasks (
+      (mover-avion ?avion ?c2 ?c1)
+      (planificador)
+    )
+  )
+  (:method sin-avion-y-avion-en-ciudad
+    :precondition (and (at ?persona - person ?c1 - city)
+                        (at ?avion - aircraft ?c2 - city)
+                        (destino ?persona - person ?destino - city)
+                        (= ?c1 ?c2)
+                        (not(= ?c1 ?destino)))
+    :tasks (
+      (board ?persona ?avion ?c1)
+      (planificador)
+    )
+  )
+
+  (:method montado-avion-no-destion
+    :precondition (and (in ?persona - person ?avion - aircraft)
+                        (at ?avion - aircraft ?origen - city)
+                        (destino ?personas - person ?destino - city)
+                        (not (= ?origen ?destino)))
+    :tasks (
+      (mover-avion ?avion ?origen ?destino)
+      (planificador)
+    )
+  )
+
+  (:method montado-avion-en-destion
+    :precondition (and (in ?persona - person ?avion - aircraft)
+                        (at ?avion - aircraft ?origen - city)
+                        (destino ?personas - person ?destino - city)
+                        (= ?origen ?destino))
+    :tasks (
+      (debark ?persona ?avion ?destino)
+      (planificador)
+    )
+  )

@@ -2,10 +2,11 @@
  :parameters (?p - person ?a - aircraft ?c - city)
  :duration (= ?duration (boarding-time))
  :condition (and  (at ?p ?c)
-                  (at ?a ?c))
+                  (at ?a ?c)
+                  (< (personas-montadas ?a)  (limite-pasajeros ?a)))
  :effect (and  (not (at ?p ?c))
-               (in ?p ?a))
-               (increase (personas-montadas ?a) 1))
+               (in ?p ?a)
+               (increase (personas-montadas ?a) 1)))
 
 (:durative-action debark
  :parameters (?p - person ?a - aircraft ?c - city)
@@ -14,8 +15,8 @@
                  (at ?a ?c)
                  )
  :effect (and  (not (in ?p ?a))
-               (at ?p ?c))
-               (decrease (personas-montadas ?a) 1))
+               (at ?p ?c)
+               (decrease (personas-montadas ?a) 1)))
 
 (:durative-action fly 
  :parameters (?a - aircraft ?c1 ?c2 - city)
@@ -49,3 +50,5 @@
  :condition (and  (> (capacity ?a) (fuel ?a))
                  (at ?a ?c))
  :effect (assign (fuel ?a) (capacity ?a)))
+
+
