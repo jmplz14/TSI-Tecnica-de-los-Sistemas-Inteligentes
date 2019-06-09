@@ -12,15 +12,22 @@
 )
 (:init
     (at p1 madrid) 
-    ;(at p2 malaga)
-    ;(at p3 sevilla)
+    (at p2 gibraltar)
+    (at p3 sevilla)
     ;(at p3 sevilla)
     ;(at p4 gibraltar)
     ;(at p5 sevilla)
     ;(at p6 cadiz)
     (at a1 almeria)
-    ;(at a2 gibraltar)
+    (at a2 sevilla)
     ;(at a3 bilbao)
+
+    (destino p1 jaen)
+    (destino p2 madrid)
+    (destino p3 madrid)
+    ;(destino p4 malaga)
+    ;(destino p5 jaen)
+    ;(destino p6 barcelona)
 
 ;    (= (distance c1 c2) 100)
 ;    (= (distance c2 c3) 100)
@@ -211,7 +218,7 @@
     (= (fuel-limit) 5000)
 
 
-    (= (limite-pasajeros a1) 20)
+    (= (limite-pasajeros a1) 10)
     (= (personas-montadas a1) 0)
     (= (fuel a1) 1000)
     (= (slow-speed a1) 10)
@@ -221,7 +228,7 @@
     (= (capacity a1) 2000)
     (= (refuel-rate a1) 1)
 
-    (= (limite-pasajeros a2) 20)
+    (= (limite-pasajeros a2) 10)
     (= (personas-montadas a2) 0)
     (= (fuel a2) 1000)
     (= (slow-speed a2) 10)
@@ -236,24 +243,15 @@
     (= (boarding-time) 1)
     (= (debarking-time) 1)
 
-    (destino p1 jaen)
-    ;(destino p2 madrid)
-    ;(destino p3 madrid)
-    ;(destino p4 malaga)
-    ;(destino p5 jaen)
-    ;(destino p6 barcelona)
+    
  )
 
 
 (:tasks-goal
    :tasks(
-   ;(transport-person p4 malaga)
-   ;(transport-person p1 madrid)
-   ;(transport-person p2 madrid)
-   ;(transport-person p3 madrid)
-   ;(transport-person)
+   
    (iniciar-plan)
-
+    
    )
   )
 )

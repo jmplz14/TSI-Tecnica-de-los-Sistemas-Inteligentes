@@ -24,6 +24,7 @@
              (different ?x ?y) (igual ?x ?y)
              (hay-fuel-lento ?a ?c1 ?c2)
              (hay-fuel-rapido ?a ?c1 ?c2)
+             (hay-espacio ?a)
              (sobrepasa-limite-rapido ?a ?c1 ?c2)
              (sobrepasa-limite-lento ?a ?c1 ?c2)
              )
@@ -59,6 +60,11 @@
 ;; En este caso es una forma de describir que no hay restricciones de fuel. Pueden introducirse una
 ;; restricción más copleja  si en lugar de 1 se representa una expresión más elaborada (esto es objeto de
 ;; los siguientes ejercicios).
+(:derived 
+  
+  (hay-espacio ?a - aircraft)
+  (< (personas-montadas ?a) (limite-pasajeros ?a)) )
+
 (:derived 
   
   (hay-fuel-lento ?a - aircraft ?c1 - city ?c2 - city)
@@ -104,8 +110,32 @@
 (:task planificador
   :parameters ()
   
+(:method montado-avion-en-destion
+    :precondition (and (in ?persona - person ?avion - aircraft)
+                        (at ?avion - aircraft ?origen - city)
+                        (destino ?persona - person ?destino - city)
+                        (= ?origen ?destino))
+    :tasks (
+      (debark ?persona ?avion ?destino)
+      (planificador)
+    )
+  )
   
-
+  (:method sin-avion-y-avion-en-ciudad
+    :precondition (and (at ?persona - person ?c1 - city)
+                        (at ?avion - aircraft ?c2 - city)
+                        (hay-espacio ?avion)
+                        (destino ?persona - person ?destino - city)
+                        (= ?c1 ?c2)
+                        (not(= ?c1 ?destino))
+                        )
+    :tasks (
+      ;((:inline (increase (personas-montadas ?a)  (1)) ) 
+      (board ?persona ?avion ?c1)
+      (planificador)
+    )
+  )
+  
 
   (:method sin-avion-y-avion-no-ciudad
     :precondition (and (at ?persona - person ?c1 - city)
@@ -118,18 +148,8 @@
       (planificador)
     )
   )
-  (:method sin-avion-y-avion-en-ciudad
-    :precondition (and (at ?persona - person ?c1 - city)
-                        (at ?avion - aircraft ?c2 - city)
-                        (destino ?persona - person ?destino - city)
-                        (= ?c1 ?c2)
-                        (not(= ?c1 ?destino)))
-    :tasks (
-      (board ?persona ?avion ?c1)
-      (planificador)
-    )
-  )
-
+  
+  
   (:method montado-avion-no-destion
     :precondition (and (in ?persona - person ?avion - aircraft)
                         (at ?avion - aircraft ?origen - city)
@@ -139,18 +159,11 @@
       (mover-avion ?avion ?origen ?destino)
       (planificador)
     )
-  )
 
-  (:method montado-avion-en-destion
-    :precondition (and (in ?persona - person ?avion - aircraft)
-                        (at ?avion - aircraft ?origen - city)
-                        (destino ?personas - person ?destino - city)
-                        (= ?origen ?destino))
-    :tasks (
-      (debark ?persona ?avion ?destino)
-      (planificador)
-    )
   )
+  
+
+  
 
 
 
@@ -159,12 +172,10 @@
                         (destino ?p - person ?destino - city)
                         (= ?origen ?destino))
     :tasks (
-      ;(:inline () (decrease (num-pasajeros) 1))
-      ;(:inline () (not(destino ?p ?destino)))
-      ;(planificador)
+      
     )
   )
-
+  
   
 
   ;(:method caso-base
@@ -173,6 +184,7 @@
   ;  )
   ;)
 )
+
 
 
 (:task mover-avion
