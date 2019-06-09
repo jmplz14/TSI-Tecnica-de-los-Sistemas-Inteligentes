@@ -74,7 +74,7 @@
 		        (mover-avion ?a ?c1 ?c)
 		        (debark ?p ?a ?c )))
 
-    (:method Case3 ;si no est� en la ciudad destino, pero avion y persona est�n en la misma ciudad
+    (:method Case3 ;si no est� en la ciudad destino, pero avion y persona no est�n en la misma ciudad
 	  :precondition (and (at ?p - person ?c1 - city)
 			                 (at ?a - aircraft ?c2 - city))
 
